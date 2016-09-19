@@ -1,0 +1,2701 @@
+
+kkdrone.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000002  00800100  0000113a  000011ce  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         0000113a  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000057  00800102  00800102  000011d0  2**0
+                  ALLOC
+  3 .stab         00000948  00000000  00000000  000011d0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      000001af  00000000  00000000  00001b18  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000c0  00000000  00000000  00001cc8  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000ff8  00000000  00000000  00001d88  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000002f1  00000000  00000000  00002d80  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000008be  00000000  00000000  00003071  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000002bc  00000000  00000000  00003930  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000004c8  00000000  00000000  00003bec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000008c4  00000000  00000000  000040b4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000180  00000000  00000000  00004978  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+       0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+       4:	0c 94 84 00 	jmp	0x108	; 0x108 <__vector_1>
+       8:	0c 94 b5 00 	jmp	0x16a	; 0x16a <__vector_2>
+       c:	0c 94 e6 00 	jmp	0x1cc	; 0x1cc <__vector_3>
+      10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      14:	0c 94 53 00 	jmp	0xa6	; 0xa6 <__vector_5>
+      18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      24:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      58:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      5c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      60:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+      64:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+      68:	11 24       	eor	r1, r1
+      6a:	1f be       	out	0x3f, r1	; 63
+      6c:	cf ef       	ldi	r28, 0xFF	; 255
+      6e:	d4 e0       	ldi	r29, 0x04	; 4
+      70:	de bf       	out	0x3e, r29	; 62
+      72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+      74:	11 e0       	ldi	r17, 0x01	; 1
+      76:	a0 e0       	ldi	r26, 0x00	; 0
+      78:	b1 e0       	ldi	r27, 0x01	; 1
+      7a:	ea e3       	ldi	r30, 0x3A	; 58
+      7c:	f1 e1       	ldi	r31, 0x11	; 17
+      7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+      80:	05 90       	lpm	r0, Z+
+      82:	0d 92       	st	X+, r0
+      84:	a2 30       	cpi	r26, 0x02	; 2
+      86:	b1 07       	cpc	r27, r17
+      88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+
+0000008a <__do_clear_bss>:
+      8a:	11 e0       	ldi	r17, 0x01	; 1
+      8c:	a2 e0       	ldi	r26, 0x02	; 2
+      8e:	b1 e0       	ldi	r27, 0x01	; 1
+      90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
+
+00000092 <.do_clear_bss_loop>:
+      92:	1d 92       	st	X+, r1
+
+00000094 <.do_clear_bss_start>:
+      94:	a9 35       	cpi	r26, 0x59	; 89
+      96:	b1 07       	cpc	r27, r17
+      98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
+      9a:	0e 94 49 08 	call	0x1092	; 0x1092 <main>
+      9e:	0c 94 9b 08 	jmp	0x1136	; 0x1136 <_exit>
+
+000000a2 <__bad_interrupt>:
+      a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+000000a6 <__vector_5>:
+void eeprom_write_block_changes( const uint8_t * src, void * dest, size_t size );
+
+
+// RX_ROLL
+ISR(PCINT2_vect)
+{
+      a6:	1f 92       	push	r1
+      a8:	0f 92       	push	r0
+      aa:	0f b6       	in	r0, 0x3f	; 63
+      ac:	0f 92       	push	r0
+      ae:	11 24       	eor	r1, r1
+      b0:	2f 93       	push	r18
+      b2:	3f 93       	push	r19
+      b4:	8f 93       	push	r24
+      b6:	9f 93       	push	r25
+
+	if ( RX_ROLL )		// rising
+      b8:	89 b1       	in	r24, 0x09	; 9
+      ba:	81 ff       	sbrs	r24, 1
+      bc:	09 c0       	rjmp	.+18     	; 0xd0 <__vector_5+0x2a>
+	{
+		RxChannel1Start = TCNT1;
+      be:	80 91 84 00 	lds	r24, 0x0084
+      c2:	90 91 85 00 	lds	r25, 0x0085
+      c6:	90 93 3f 01 	sts	0x013F, r25
+      ca:	80 93 3e 01 	sts	0x013E, r24
+      ce:	13 c0       	rjmp	.+38     	; 0xf6 <__vector_5+0x50>
+
+	} else {				// falling
+		RxChannelsUpdatingFlag = 1;
+      d0:	81 e0       	ldi	r24, 0x01	; 1
+      d2:	80 93 4a 01 	sts	0x014A, r24
+		RxChannel1 = TCNT1 - RxChannel1Start;
+      d6:	80 91 84 00 	lds	r24, 0x0084
+      da:	90 91 85 00 	lds	r25, 0x0085
+      de:	20 91 3e 01 	lds	r18, 0x013E
+      e2:	30 91 3f 01 	lds	r19, 0x013F
+      e6:	82 1b       	sub	r24, r18
+      e8:	93 0b       	sbc	r25, r19
+      ea:	90 93 4c 01 	sts	0x014C, r25
+      ee:	80 93 4b 01 	sts	0x014B, r24
+		RxChannelsUpdatingFlag = 0;
+      f2:	10 92 4a 01 	sts	0x014A, r1
+	}
+}
+      f6:	9f 91       	pop	r25
+      f8:	8f 91       	pop	r24
+      fa:	3f 91       	pop	r19
+      fc:	2f 91       	pop	r18
+      fe:	0f 90       	pop	r0
+     100:	0f be       	out	0x3f, r0	; 63
+     102:	0f 90       	pop	r0
+     104:	1f 90       	pop	r1
+     106:	18 95       	reti
+
+00000108 <__vector_1>:
+
+// RX_PITCH
+ISR(INT0_vect)
+{
+     108:	1f 92       	push	r1
+     10a:	0f 92       	push	r0
+     10c:	0f b6       	in	r0, 0x3f	; 63
+     10e:	0f 92       	push	r0
+     110:	11 24       	eor	r1, r1
+     112:	2f 93       	push	r18
+     114:	3f 93       	push	r19
+     116:	8f 93       	push	r24
+     118:	9f 93       	push	r25
+	if (RX_PITCH)		
+     11a:	89 b1       	in	r24, 0x09	; 9
+     11c:	82 ff       	sbrs	r24, 2
+     11e:	09 c0       	rjmp	.+18     	; 0x132 <__vector_1+0x2a>
+	{
+		RxChannel2Start = TCNT1;
+     120:	80 91 84 00 	lds	r24, 0x0084
+     124:	90 91 85 00 	lds	r25, 0x0085
+     128:	90 93 24 01 	sts	0x0124, r25
+     12c:	80 93 23 01 	sts	0x0123, r24
+     130:	13 c0       	rjmp	.+38     	; 0x158 <__vector_1+0x50>
+
+	} else {				// falling
+		RxChannelsUpdatingFlag = 1;
+     132:	81 e0       	ldi	r24, 0x01	; 1
+     134:	80 93 4a 01 	sts	0x014A, r24
+		RxChannel2 = TCNT1 - RxChannel2Start;
+     138:	80 91 84 00 	lds	r24, 0x0084
+     13c:	90 91 85 00 	lds	r25, 0x0085
+     140:	20 91 23 01 	lds	r18, 0x0123
+     144:	30 91 24 01 	lds	r19, 0x0124
+     148:	82 1b       	sub	r24, r18
+     14a:	93 0b       	sbc	r25, r19
+     14c:	90 93 38 01 	sts	0x0138, r25
+     150:	80 93 37 01 	sts	0x0137, r24
+		RxChannelsUpdatingFlag = 0;
+     154:	10 92 4a 01 	sts	0x014A, r1
+	}
+}
+     158:	9f 91       	pop	r25
+     15a:	8f 91       	pop	r24
+     15c:	3f 91       	pop	r19
+     15e:	2f 91       	pop	r18
+     160:	0f 90       	pop	r0
+     162:	0f be       	out	0x3f, r0	; 63
+     164:	0f 90       	pop	r0
+     166:	1f 90       	pop	r1
+     168:	18 95       	reti
+
+0000016a <__vector_2>:
+
+// RX_COLL
+ISR(INT1_vect)
+{
+     16a:	1f 92       	push	r1
+     16c:	0f 92       	push	r0
+     16e:	0f b6       	in	r0, 0x3f	; 63
+     170:	0f 92       	push	r0
+     172:	11 24       	eor	r1, r1
+     174:	2f 93       	push	r18
+     176:	3f 93       	push	r19
+     178:	8f 93       	push	r24
+     17a:	9f 93       	push	r25
+	if (RX_COLL)		
+     17c:	89 b1       	in	r24, 0x09	; 9
+     17e:	83 ff       	sbrs	r24, 3
+     180:	09 c0       	rjmp	.+18     	; 0x194 <__vector_2+0x2a>
+	{
+		RxChannel3Start = TCNT1;
+     182:	80 91 84 00 	lds	r24, 0x0084
+     186:	90 91 85 00 	lds	r25, 0x0085
+     18a:	90 93 2e 01 	sts	0x012E, r25
+     18e:	80 93 2d 01 	sts	0x012D, r24
+     192:	13 c0       	rjmp	.+38     	; 0x1ba <__vector_2+0x50>
+
+	} else {				// falling
+		RxChannelsUpdatingFlag = 1;
+     194:	81 e0       	ldi	r24, 0x01	; 1
+     196:	80 93 4a 01 	sts	0x014A, r24
+		RxChannel3 = TCNT1 - RxChannel3Start;
+     19a:	80 91 84 00 	lds	r24, 0x0084
+     19e:	90 91 85 00 	lds	r25, 0x0085
+     1a2:	20 91 2d 01 	lds	r18, 0x012D
+     1a6:	30 91 2e 01 	lds	r19, 0x012E
+     1aa:	82 1b       	sub	r24, r18
+     1ac:	93 0b       	sbc	r25, r19
+     1ae:	90 93 49 01 	sts	0x0149, r25
+     1b2:	80 93 48 01 	sts	0x0148, r24
+		RxChannelsUpdatingFlag = 0;
+     1b6:	10 92 4a 01 	sts	0x014A, r1
+	}
+}
+     1ba:	9f 91       	pop	r25
+     1bc:	8f 91       	pop	r24
+     1be:	3f 91       	pop	r19
+     1c0:	2f 91       	pop	r18
+     1c2:	0f 90       	pop	r0
+     1c4:	0f be       	out	0x3f, r0	; 63
+     1c6:	0f 90       	pop	r0
+     1c8:	1f 90       	pop	r1
+     1ca:	18 95       	reti
+
+000001cc <__vector_3>:
+
+// RX_YAW
+ISR(PCINT0_vect)
+{
+     1cc:	1f 92       	push	r1
+     1ce:	0f 92       	push	r0
+     1d0:	0f b6       	in	r0, 0x3f	; 63
+     1d2:	0f 92       	push	r0
+     1d4:	11 24       	eor	r1, r1
+     1d6:	2f 93       	push	r18
+     1d8:	3f 93       	push	r19
+     1da:	8f 93       	push	r24
+     1dc:	9f 93       	push	r25
+
+	if ( RX_YAW )		// rising
+     1de:	1f 9b       	sbis	0x03, 7	; 3
+     1e0:	09 c0       	rjmp	.+18     	; 0x1f4 <__vector_3+0x28>
+	{
+		RxChannel4Start = TCNT1;
+     1e2:	80 91 84 00 	lds	r24, 0x0084
+     1e6:	90 91 85 00 	lds	r25, 0x0085
+     1ea:	90 93 47 01 	sts	0x0147, r25
+     1ee:	80 93 46 01 	sts	0x0146, r24
+     1f2:	13 c0       	rjmp	.+38     	; 0x21a <__vector_3+0x4e>
+
+	} else {				// falling
+		RxChannelsUpdatingFlag = 1;
+     1f4:	81 e0       	ldi	r24, 0x01	; 1
+     1f6:	80 93 4a 01 	sts	0x014A, r24
+		RxChannel4 = TCNT1 - RxChannel4Start;
+     1fa:	80 91 84 00 	lds	r24, 0x0084
+     1fe:	90 91 85 00 	lds	r25, 0x0085
+     202:	20 91 46 01 	lds	r18, 0x0146
+     206:	30 91 47 01 	lds	r19, 0x0147
+     20a:	82 1b       	sub	r24, r18
+     20c:	93 0b       	sbc	r25, r19
+     20e:	90 93 26 01 	sts	0x0126, r25
+     212:	80 93 25 01 	sts	0x0125, r24
+		RxChannelsUpdatingFlag = 0;
+     216:	10 92 4a 01 	sts	0x014A, r1
+	}
+}
+     21a:	9f 91       	pop	r25
+     21c:	8f 91       	pop	r24
+     21e:	3f 91       	pop	r19
+     220:	2f 91       	pop	r18
+     222:	0f 90       	pop	r0
+     224:	0f be       	out	0x3f, r0	; 63
+     226:	0f 90       	pop	r0
+     228:	1f 90       	pop	r1
+     22a:	18 95       	reti
+
+0000022c <Init_ADC>:
+	if (Armed) output_motor_ppm();		// output ESC signal
+}
+
+void Init_ADC(void)
+{
+	DIDR0 	= 0b00111111;		// Digital Input Disable Register - ADC5..0 Digital Input Disable
+     22c:	8f e3       	ldi	r24, 0x3F	; 63
+     22e:	80 93 7e 00 	sts	0x007E, r24
+	ADCSRB 	= 0b00000000; 	// ADC Control and Status Register B - ADTS2:0
+     232:	10 92 7b 00 	sts	0x007B, r1
+}
+     236:	08 95       	ret
+
+00000238 <read_adc>:
+	GainIn[YAW] = GainInADC[YAW] / 10;
+}
+
+void read_adc(uint8_t channel)
+{
+	ADMUX 	= channel;						// set channel
+     238:	80 93 7c 00 	sts	0x007C, r24
+	ADCSRA 	= 0b11000110;					// ADEN, ADSC, ADPS1,2
+     23c:	86 ec       	ldi	r24, 0xC6	; 198
+     23e:	80 93 7a 00 	sts	0x007A, r24
+
+	while (ADCSRA & (1 << ADSC));	// wait to complete
+     242:	ea e7       	ldi	r30, 0x7A	; 122
+     244:	f0 e0       	ldi	r31, 0x00	; 0
+     246:	80 81       	ld	r24, Z
+     248:	86 fd       	sbrc	r24, 6
+     24a:	fd cf       	rjmp	.-6      	; 0x246 <read_adc+0xe>
+
+}
+     24c:	08 95       	ret
+
+0000024e <ReadGainPots>:
+ * GainInADC[pot-name] holds the raw ADC values
+ * GainIn[pot-name] = GainInADC[pot-name] * Gain+/-
+ * 
+ */
+void ReadGainPots(void)
+{
+     24e:	ef 92       	push	r14
+     250:	ff 92       	push	r15
+     252:	0f 93       	push	r16
+     254:	1f 93       	push	r17
+     256:	cf 93       	push	r28
+     258:	df 93       	push	r29
+	read_adc( 3 );			// read roll gain ADC3
+     25a:	83 e0       	ldi	r24, 0x03	; 3
+     25c:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	GainInADC[ROLL] = ADCL;
+     260:	08 e7       	ldi	r16, 0x78	; 120
+     262:	10 e0       	ldi	r17, 0x00	; 0
+     264:	f8 01       	movw	r30, r16
+     266:	20 81       	ld	r18, Z
+     268:	30 e0       	ldi	r19, 0x00	; 0
+     26a:	30 93 41 01 	sts	0x0141, r19
+     26e:	20 93 40 01 	sts	0x0140, r18
+	GainInADC[ROLL] += ((uint16_t) ADCH <<8);
+     272:	0f 2e       	mov	r0, r31
+     274:	f9 e7       	ldi	r31, 0x79	; 121
+     276:	ef 2e       	mov	r14, r31
+     278:	ff 24       	eor	r15, r15
+     27a:	f0 2d       	mov	r31, r0
+     27c:	f7 01       	movw	r30, r14
+     27e:	40 81       	ld	r20, Z
+     280:	94 2f       	mov	r25, r20
+     282:	80 e0       	ldi	r24, 0x00	; 0
+     284:	82 0f       	add	r24, r18
+     286:	93 1f       	adc	r25, r19
+     288:	90 93 41 01 	sts	0x0141, r25
+     28c:	80 93 40 01 	sts	0x0140, r24
+	GainIn[ROLL] = GainInADC[ROLL] / 10;
+     290:	ca e0       	ldi	r28, 0x0A	; 10
+     292:	d0 e0       	ldi	r29, 0x00	; 0
+     294:	be 01       	movw	r22, r28
+     296:	0e 94 4e 08 	call	0x109c	; 0x109c <__udivmodhi4>
+     29a:	70 93 32 01 	sts	0x0132, r23
+     29e:	60 93 31 01 	sts	0x0131, r22
+
+	read_adc( 4 );			// read pitch gain ADC4
+     2a2:	84 e0       	ldi	r24, 0x04	; 4
+     2a4:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	GainInADC[PITCH] = ADCL;
+     2a8:	f8 01       	movw	r30, r16
+     2aa:	20 81       	ld	r18, Z
+     2ac:	30 e0       	ldi	r19, 0x00	; 0
+     2ae:	30 93 43 01 	sts	0x0143, r19
+     2b2:	20 93 42 01 	sts	0x0142, r18
+	GainInADC[PITCH] += ((uint16_t) ADCH <<8);
+     2b6:	f7 01       	movw	r30, r14
+     2b8:	40 81       	ld	r20, Z
+     2ba:	94 2f       	mov	r25, r20
+     2bc:	80 e0       	ldi	r24, 0x00	; 0
+     2be:	82 0f       	add	r24, r18
+     2c0:	93 1f       	adc	r25, r19
+     2c2:	90 93 43 01 	sts	0x0143, r25
+     2c6:	80 93 42 01 	sts	0x0142, r24
+	GainIn[PITCH] = GainInADC[PITCH] / 10;
+     2ca:	be 01       	movw	r22, r28
+     2cc:	0e 94 4e 08 	call	0x109c	; 0x109c <__udivmodhi4>
+     2d0:	70 93 34 01 	sts	0x0134, r23
+     2d4:	60 93 33 01 	sts	0x0133, r22
+
+	read_adc( 5 );			// read yaw gain ADC5
+     2d8:	85 e0       	ldi	r24, 0x05	; 5
+     2da:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	GainInADC[YAW] = ADCL;
+     2de:	f8 01       	movw	r30, r16
+     2e0:	80 81       	ld	r24, Z
+     2e2:	90 e0       	ldi	r25, 0x00	; 0
+     2e4:	90 93 45 01 	sts	0x0145, r25
+     2e8:	80 93 44 01 	sts	0x0144, r24
+	GainInADC[YAW] += ((uint16_t) ADCH <<8);
+     2ec:	f7 01       	movw	r30, r14
+     2ee:	40 81       	ld	r20, Z
+     2f0:	34 2f       	mov	r19, r20
+     2f2:	20 e0       	ldi	r18, 0x00	; 0
+     2f4:	82 0f       	add	r24, r18
+     2f6:	93 1f       	adc	r25, r19
+     2f8:	90 93 45 01 	sts	0x0145, r25
+     2fc:	80 93 44 01 	sts	0x0144, r24
+	GainIn[YAW] = GainInADC[YAW] / 10;
+     300:	be 01       	movw	r22, r28
+     302:	0e 94 4e 08 	call	0x109c	; 0x109c <__udivmodhi4>
+     306:	70 93 36 01 	sts	0x0136, r23
+     30a:	60 93 35 01 	sts	0x0135, r22
+}
+     30e:	df 91       	pop	r29
+     310:	cf 91       	pop	r28
+     312:	1f 91       	pop	r17
+     314:	0f 91       	pop	r16
+     316:	ff 90       	pop	r15
+     318:	ef 90       	pop	r14
+     31a:	08 95       	ret
+
+0000031c <ReadGyros>:
+	while (ADCSRA & (1 << ADSC));	// wait to complete
+
+}
+
+void ReadGyros(bool calibrate)
+{
+     31c:	0f 93       	push	r16
+     31e:	1f 93       	push	r17
+     320:	cf 93       	push	r28
+     322:	df 93       	push	r29
+     324:	c8 2f       	mov	r28, r24
+	read_adc( 2 );			// read roll gyro ADC2
+     326:	82 e0       	ldi	r24, 0x02	; 2
+     328:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	gyroADC[ROLL] = ADCL;
+     32c:	20 91 78 00 	lds	r18, 0x0078
+     330:	30 e0       	ldi	r19, 0x00	; 0
+     332:	30 93 1b 01 	sts	0x011B, r19
+     336:	20 93 1a 01 	sts	0x011A, r18
+	gyroADC[ROLL] += ((uint16_t) ADCH <<8);
+     33a:	40 91 79 00 	lds	r20, 0x0079
+     33e:	94 2f       	mov	r25, r20
+     340:	80 e0       	ldi	r24, 0x00	; 0
+     342:	82 0f       	add	r24, r18
+     344:	93 1f       	adc	r25, r19
+     346:	90 93 1b 01 	sts	0x011B, r25
+     34a:	80 93 1a 01 	sts	0x011A, r24
+	if (!calibrate)	gyroADC[ROLL] 	-= gyroZero[ROLL];			//remove offset from gyro output
+     34e:	cc 23       	and	r28, r28
+     350:	09 f0       	breq	.+2      	; 0x354 <ReadGyros+0x38>
+     352:	41 c0       	rjmp	.+130    	; 0x3d6 <ReadGyros+0xba>
+     354:	20 91 03 01 	lds	r18, 0x0103
+     358:	30 91 04 01 	lds	r19, 0x0104
+     35c:	82 1b       	sub	r24, r18
+     35e:	93 0b       	sbc	r25, r19
+     360:	90 93 1b 01 	sts	0x011B, r25
+     364:	80 93 1a 01 	sts	0x011A, r24
+
+	read_adc( 1 );			// read pitch gyro ADC1
+     368:	81 e0       	ldi	r24, 0x01	; 1
+     36a:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	gyroADC[PITCH] = ADCL;
+     36e:	c8 e7       	ldi	r28, 0x78	; 120
+     370:	d0 e0       	ldi	r29, 0x00	; 0
+     372:	28 81       	ld	r18, Y
+     374:	30 e0       	ldi	r19, 0x00	; 0
+     376:	30 93 1d 01 	sts	0x011D, r19
+     37a:	20 93 1c 01 	sts	0x011C, r18
+	gyroADC[PITCH] += ((uint16_t) ADCH <<8);
+     37e:	09 e7       	ldi	r16, 0x79	; 121
+     380:	10 e0       	ldi	r17, 0x00	; 0
+     382:	f8 01       	movw	r30, r16
+     384:	40 81       	ld	r20, Z
+     386:	94 2f       	mov	r25, r20
+     388:	80 e0       	ldi	r24, 0x00	; 0
+     38a:	82 0f       	add	r24, r18
+     38c:	93 1f       	adc	r25, r19
+	if (!calibrate)	gyroADC[PITCH] -= gyroZero[PITCH];
+     38e:	40 91 05 01 	lds	r20, 0x0105
+     392:	50 91 06 01 	lds	r21, 0x0106
+     396:	84 1b       	sub	r24, r20
+     398:	95 0b       	sbc	r25, r21
+     39a:	90 93 1d 01 	sts	0x011D, r25
+     39e:	80 93 1c 01 	sts	0x011C, r24
+
+#ifdef EXTERNAL_YAW_GYRO
+	gyroADC[YAW] = 0;
+#else
+	read_adc( 0 );			// read yaw gyro ADC0
+     3a2:	80 e0       	ldi	r24, 0x00	; 0
+     3a4:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	gyroADC[YAW] = ADCL;
+     3a8:	28 81       	ld	r18, Y
+     3aa:	30 e0       	ldi	r19, 0x00	; 0
+     3ac:	30 93 1f 01 	sts	0x011F, r19
+     3b0:	20 93 1e 01 	sts	0x011E, r18
+	gyroADC[YAW] += ((uint16_t) ADCH <<8);
+     3b4:	f8 01       	movw	r30, r16
+     3b6:	40 81       	ld	r20, Z
+     3b8:	94 2f       	mov	r25, r20
+     3ba:	80 e0       	ldi	r24, 0x00	; 0
+     3bc:	82 0f       	add	r24, r18
+     3be:	93 1f       	adc	r25, r19
+	if (!calibrate)	gyroADC[YAW] 	-= gyroZero[YAW];
+     3c0:	40 91 07 01 	lds	r20, 0x0107
+     3c4:	50 91 08 01 	lds	r21, 0x0108
+     3c8:	84 1b       	sub	r24, r20
+     3ca:	95 0b       	sbc	r25, r21
+     3cc:	90 93 1f 01 	sts	0x011F, r25
+     3d0:	80 93 1e 01 	sts	0x011E, r24
+     3d4:	2a c0       	rjmp	.+84     	; 0x42a <ReadGyros+0x10e>
+	read_adc( 2 );			// read roll gyro ADC2
+	gyroADC[ROLL] = ADCL;
+	gyroADC[ROLL] += ((uint16_t) ADCH <<8);
+	if (!calibrate)	gyroADC[ROLL] 	-= gyroZero[ROLL];			//remove offset from gyro output
+
+	read_adc( 1 );			// read pitch gyro ADC1
+     3d6:	81 e0       	ldi	r24, 0x01	; 1
+     3d8:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	gyroADC[PITCH] = ADCL;
+     3dc:	c8 e7       	ldi	r28, 0x78	; 120
+     3de:	d0 e0       	ldi	r29, 0x00	; 0
+     3e0:	28 81       	ld	r18, Y
+     3e2:	30 e0       	ldi	r19, 0x00	; 0
+     3e4:	30 93 1d 01 	sts	0x011D, r19
+     3e8:	20 93 1c 01 	sts	0x011C, r18
+	gyroADC[PITCH] += ((uint16_t) ADCH <<8);
+     3ec:	09 e7       	ldi	r16, 0x79	; 121
+     3ee:	10 e0       	ldi	r17, 0x00	; 0
+     3f0:	f8 01       	movw	r30, r16
+     3f2:	40 81       	ld	r20, Z
+     3f4:	94 2f       	mov	r25, r20
+     3f6:	80 e0       	ldi	r24, 0x00	; 0
+     3f8:	82 0f       	add	r24, r18
+     3fa:	93 1f       	adc	r25, r19
+     3fc:	90 93 1d 01 	sts	0x011D, r25
+     400:	80 93 1c 01 	sts	0x011C, r24
+	if (!calibrate)	gyroADC[PITCH] -= gyroZero[PITCH];
+
+#ifdef EXTERNAL_YAW_GYRO
+	gyroADC[YAW] = 0;
+#else
+	read_adc( 0 );			// read yaw gyro ADC0
+     404:	80 e0       	ldi	r24, 0x00	; 0
+     406:	0e 94 1c 01 	call	0x238	; 0x238 <read_adc>
+	gyroADC[YAW] = ADCL;
+     40a:	28 81       	ld	r18, Y
+     40c:	30 e0       	ldi	r19, 0x00	; 0
+     40e:	30 93 1f 01 	sts	0x011F, r19
+     412:	20 93 1e 01 	sts	0x011E, r18
+	gyroADC[YAW] += ((uint16_t) ADCH <<8);
+     416:	f8 01       	movw	r30, r16
+     418:	40 81       	ld	r20, Z
+     41a:	94 2f       	mov	r25, r20
+     41c:	80 e0       	ldi	r24, 0x00	; 0
+     41e:	82 0f       	add	r24, r18
+     420:	93 1f       	adc	r25, r19
+     422:	90 93 1f 01 	sts	0x011F, r25
+     426:	80 93 1e 01 	sts	0x011E, r24
+	if (!calibrate)	gyroADC[YAW] 	-= gyroZero[YAW];
+#endif
+}
+     42a:	df 91       	pop	r29
+     42c:	cf 91       	pop	r28
+     42e:	1f 91       	pop	r17
+     430:	0f 91       	pop	r16
+     432:	08 95       	ret
+
+00000434 <CalibrateGyros>:
+
+void CalibrateGyros(void)
+{
+     434:	6f 92       	push	r6
+     436:	7f 92       	push	r7
+     438:	8f 92       	push	r8
+     43a:	9f 92       	push	r9
+     43c:	af 92       	push	r10
+     43e:	bf 92       	push	r11
+     440:	cf 92       	push	r12
+     442:	df 92       	push	r13
+     444:	ef 92       	push	r14
+     446:	ff 92       	push	r15
+     448:	0f 93       	push	r16
+     44a:	1f 93       	push	r17
+     44c:	cf 93       	push	r28
+	uint8_t i;
+
+	ReadGainPots();	// about time we did this !
+     44e:	0e 94 27 01 	call	0x24e	; 0x24e <ReadGainPots>
+
+	// get/set gyro zero value (average of 32 readings)
+	gyroZero[ROLL] 	= 0;						
+     452:	10 92 04 01 	sts	0x0104, r1
+     456:	10 92 03 01 	sts	0x0103, r1
+	gyroZero[PITCH] = 0;	
+     45a:	10 92 06 01 	sts	0x0106, r1
+     45e:	10 92 05 01 	sts	0x0105, r1
+	gyroZero[YAW] 	= 0;
+     462:	10 92 08 01 	sts	0x0108, r1
+     466:	10 92 07 01 	sts	0x0107, r1
+     46a:	c0 e2       	ldi	r28, 0x20	; 32
+
+	for (i=0;i<32;i++)
+	{
+		ReadGyros(true);
+	
+		gyroZero[ROLL] 	+= gyroADC[ROLL];						
+     46c:	03 e0       	ldi	r16, 0x03	; 3
+     46e:	11 e0       	ldi	r17, 0x01	; 1
+     470:	0f 2e       	mov	r0, r31
+     472:	fa e1       	ldi	r31, 0x1A	; 26
+     474:	af 2e       	mov	r10, r31
+     476:	f1 e0       	ldi	r31, 0x01	; 1
+     478:	bf 2e       	mov	r11, r31
+     47a:	f0 2d       	mov	r31, r0
+		gyroZero[PITCH] += gyroADC[PITCH];	
+     47c:	ee 24       	eor	r14, r14
+     47e:	ff 24       	eor	r15, r15
+     480:	68 94       	set
+     482:	e1 f8       	bld	r14, 1
+     484:	e0 0e       	add	r14, r16
+     486:	f1 1e       	adc	r15, r17
+     488:	88 24       	eor	r8, r8
+     48a:	99 24       	eor	r9, r9
+     48c:	68 94       	set
+     48e:	81 f8       	bld	r8, 1
+     490:	8a 0c       	add	r8, r10
+     492:	9b 1c       	adc	r9, r11
+		gyroZero[YAW] 	+= gyroADC[YAW];
+     494:	cc 24       	eor	r12, r12
+     496:	dd 24       	eor	r13, r13
+     498:	68 94       	set
+     49a:	c2 f8       	bld	r12, 2
+     49c:	c0 0e       	add	r12, r16
+     49e:	d1 1e       	adc	r13, r17
+     4a0:	66 24       	eor	r6, r6
+     4a2:	77 24       	eor	r7, r7
+     4a4:	68 94       	set
+     4a6:	62 f8       	bld	r6, 2
+     4a8:	6a 0c       	add	r6, r10
+     4aa:	7b 1c       	adc	r7, r11
+	gyroZero[PITCH] = 0;	
+	gyroZero[YAW] 	= 0;
+
+	for (i=0;i<32;i++)
+	{
+		ReadGyros(true);
+     4ac:	81 e0       	ldi	r24, 0x01	; 1
+     4ae:	0e 94 8e 01 	call	0x31c	; 0x31c <ReadGyros>
+	
+		gyroZero[ROLL] 	+= gyroADC[ROLL];						
+     4b2:	f8 01       	movw	r30, r16
+     4b4:	80 81       	ld	r24, Z
+     4b6:	91 81       	ldd	r25, Z+1	; 0x01
+     4b8:	f5 01       	movw	r30, r10
+     4ba:	20 81       	ld	r18, Z
+     4bc:	31 81       	ldd	r19, Z+1	; 0x01
+     4be:	82 0f       	add	r24, r18
+     4c0:	93 1f       	adc	r25, r19
+     4c2:	f8 01       	movw	r30, r16
+     4c4:	91 83       	std	Z+1, r25	; 0x01
+     4c6:	80 83       	st	Z, r24
+		gyroZero[PITCH] += gyroADC[PITCH];	
+     4c8:	f7 01       	movw	r30, r14
+     4ca:	80 81       	ld	r24, Z
+     4cc:	91 81       	ldd	r25, Z+1	; 0x01
+     4ce:	f4 01       	movw	r30, r8
+     4d0:	20 81       	ld	r18, Z
+     4d2:	31 81       	ldd	r19, Z+1	; 0x01
+     4d4:	82 0f       	add	r24, r18
+     4d6:	93 1f       	adc	r25, r19
+     4d8:	f7 01       	movw	r30, r14
+     4da:	91 83       	std	Z+1, r25	; 0x01
+     4dc:	80 83       	st	Z, r24
+		gyroZero[YAW] 	+= gyroADC[YAW];
+     4de:	f6 01       	movw	r30, r12
+     4e0:	80 81       	ld	r24, Z
+     4e2:	91 81       	ldd	r25, Z+1	; 0x01
+     4e4:	f3 01       	movw	r30, r6
+     4e6:	20 81       	ld	r18, Z
+     4e8:	31 81       	ldd	r19, Z+1	; 0x01
+     4ea:	82 0f       	add	r24, r18
+     4ec:	93 1f       	adc	r25, r19
+     4ee:	f6 01       	movw	r30, r12
+     4f0:	91 83       	std	Z+1, r25	; 0x01
+     4f2:	80 83       	st	Z, r24
+     4f4:	c1 50       	subi	r28, 0x01	; 1
+	// get/set gyro zero value (average of 32 readings)
+	gyroZero[ROLL] 	= 0;						
+	gyroZero[PITCH] = 0;	
+	gyroZero[YAW] 	= 0;
+
+	for (i=0;i<32;i++)
+     4f6:	d1 f6       	brne	.-76     	; 0x4ac <CalibrateGyros+0x78>
+		gyroZero[ROLL] 	+= gyroADC[ROLL];						
+		gyroZero[PITCH] += gyroADC[PITCH];	
+		gyroZero[YAW] 	+= gyroADC[YAW];
+	}
+
+	gyroZero[ROLL] 	= (gyroZero[ROLL] >> 5);						
+     4f8:	80 91 03 01 	lds	r24, 0x0103
+     4fc:	90 91 04 01 	lds	r25, 0x0104
+     500:	95 95       	asr	r25
+     502:	87 95       	ror	r24
+     504:	95 95       	asr	r25
+     506:	87 95       	ror	r24
+     508:	95 95       	asr	r25
+     50a:	87 95       	ror	r24
+     50c:	95 95       	asr	r25
+     50e:	87 95       	ror	r24
+     510:	95 95       	asr	r25
+     512:	87 95       	ror	r24
+     514:	90 93 04 01 	sts	0x0104, r25
+     518:	80 93 03 01 	sts	0x0103, r24
+	gyroZero[PITCH] = (gyroZero[PITCH] >> 5);
+     51c:	80 91 05 01 	lds	r24, 0x0105
+     520:	90 91 06 01 	lds	r25, 0x0106
+     524:	95 95       	asr	r25
+     526:	87 95       	ror	r24
+     528:	95 95       	asr	r25
+     52a:	87 95       	ror	r24
+     52c:	95 95       	asr	r25
+     52e:	87 95       	ror	r24
+     530:	95 95       	asr	r25
+     532:	87 95       	ror	r24
+     534:	95 95       	asr	r25
+     536:	87 95       	ror	r24
+     538:	90 93 06 01 	sts	0x0106, r25
+     53c:	80 93 05 01 	sts	0x0105, r24
+	gyroZero[YAW] 	= (gyroZero[YAW] 	>> 5);
+     540:	80 91 07 01 	lds	r24, 0x0107
+     544:	90 91 08 01 	lds	r25, 0x0108
+     548:	95 95       	asr	r25
+     54a:	87 95       	ror	r24
+     54c:	95 95       	asr	r25
+     54e:	87 95       	ror	r24
+     550:	95 95       	asr	r25
+     552:	87 95       	ror	r24
+     554:	95 95       	asr	r25
+     556:	87 95       	ror	r24
+     558:	95 95       	asr	r25
+     55a:	87 95       	ror	r24
+     55c:	90 93 08 01 	sts	0x0108, r25
+     560:	80 93 07 01 	sts	0x0107, r24
+
+	GyroCalibrated = true;
+     564:	81 e0       	ldi	r24, 0x01	; 1
+     566:	80 93 22 01 	sts	0x0122, r24
+
+}
+     56a:	cf 91       	pop	r28
+     56c:	1f 91       	pop	r17
+     56e:	0f 91       	pop	r16
+     570:	ff 90       	pop	r15
+     572:	ef 90       	pop	r14
+     574:	df 90       	pop	r13
+     576:	cf 90       	pop	r12
+     578:	bf 90       	pop	r11
+     57a:	af 90       	pop	r10
+     57c:	9f 90       	pop	r9
+     57e:	8f 90       	pop	r8
+     580:	7f 90       	pop	r7
+     582:	6f 90       	pop	r6
+     584:	08 95       	ret
+
+00000586 <RxGetChannels>:
+//--- Get and scale RX channel inputs ---
+void RxGetChannels(void)
+{
+	static int16_t RxChannel;
+
+	while ( RxChannelsUpdatingFlag );
+     586:	80 91 4a 01 	lds	r24, 0x014A
+     58a:	88 23       	and	r24, r24
+     58c:	e1 f7       	brne	.-8      	; 0x586 <RxGetChannels>
+
+	RxChannel = RxChannel1;
+     58e:	80 91 4b 01 	lds	r24, 0x014B
+     592:	90 91 4c 01 	lds	r25, 0x014C
+	RxChannel -= Config.RxChannel1ZeroOffset;				// normalise
+     596:	20 91 51 01 	lds	r18, 0x0151
+     59a:	30 91 52 01 	lds	r19, 0x0152
+     59e:	82 1b       	sub	r24, r18
+     5a0:	93 0b       	sbc	r25, r19
+	RxInRoll = (RxChannel >> 2);                    //     "
+     5a2:	95 95       	asr	r25
+     5a4:	87 95       	ror	r24
+     5a6:	95 95       	asr	r25
+     5a8:	87 95       	ror	r24
+     5aa:	90 93 28 01 	sts	0x0128, r25
+     5ae:	80 93 27 01 	sts	0x0127, r24
+
+	while ( RxChannelsUpdatingFlag );
+     5b2:	80 91 4a 01 	lds	r24, 0x014A
+     5b6:	88 23       	and	r24, r24
+     5b8:	e1 f7       	brne	.-8      	; 0x5b2 <RxGetChannels+0x2c>
+
+	RxChannel = RxChannel2;
+     5ba:	80 91 37 01 	lds	r24, 0x0137
+     5be:	90 91 38 01 	lds	r25, 0x0138
+	RxChannel -= Config.RxChannel2ZeroOffset;				// normalise
+     5c2:	20 91 53 01 	lds	r18, 0x0153
+     5c6:	30 91 54 01 	lds	r19, 0x0154
+     5ca:	82 1b       	sub	r24, r18
+     5cc:	93 0b       	sbc	r25, r19
+	RxInPitch = (RxChannel >> 2);                   //     "
+     5ce:	95 95       	asr	r25
+     5d0:	87 95       	ror	r24
+     5d2:	95 95       	asr	r25
+     5d4:	87 95       	ror	r24
+     5d6:	90 93 3c 01 	sts	0x013C, r25
+     5da:	80 93 3b 01 	sts	0x013B, r24
+
+	while ( RxChannelsUpdatingFlag );
+     5de:	80 91 4a 01 	lds	r24, 0x014A
+     5e2:	88 23       	and	r24, r24
+     5e4:	e1 f7       	brne	.-8      	; 0x5de <RxGetChannels+0x58>
+
+	RxChannel = RxChannel3;
+     5e6:	80 91 48 01 	lds	r24, 0x0148
+     5ea:	90 91 49 01 	lds	r25, 0x0149
+	RxChannel -= Config.RxChannel3ZeroOffset;				// scale 0->100
+     5ee:	20 91 55 01 	lds	r18, 0x0155
+     5f2:	30 91 56 01 	lds	r19, 0x0156
+     5f6:	82 1b       	sub	r24, r18
+     5f8:	93 0b       	sbc	r25, r19
+	RxInCollective = (RxChannel >> 3);              // 
+     5fa:	95 95       	asr	r25
+     5fc:	87 95       	ror	r24
+     5fe:	95 95       	asr	r25
+     600:	87 95       	ror	r24
+     602:	95 95       	asr	r25
+     604:	87 95       	ror	r24
+     606:	90 93 19 01 	sts	0x0119, r25
+     60a:	80 93 18 01 	sts	0x0118, r24
+
+	while ( RxChannelsUpdatingFlag );
+     60e:	80 91 4a 01 	lds	r24, 0x014A
+     612:	88 23       	and	r24, r24
+     614:	e1 f7       	brne	.-8      	; 0x60e <RxGetChannels+0x88>
+
+	RxChannel = RxChannel4;
+     616:	80 91 25 01 	lds	r24, 0x0125
+     61a:	90 91 26 01 	lds	r25, 0x0126
+	RxChannel -= Config.RxChannel4ZeroOffset;				// normalise
+     61e:	20 91 57 01 	lds	r18, 0x0157
+     622:	30 91 58 01 	lds	r19, 0x0158
+     626:	82 1b       	sub	r24, r18
+     628:	93 0b       	sbc	r25, r19
+     62a:	90 93 0d 01 	sts	0x010D, r25
+     62e:	80 93 0c 01 	sts	0x010C, r24
+	RxInYaw = (RxChannel >> 2);                     //     "
+     632:	95 95       	asr	r25
+     634:	87 95       	ror	r24
+     636:	95 95       	asr	r25
+     638:	87 95       	ror	r24
+     63a:	90 93 2a 01 	sts	0x012A, r25
+     63e:	80 93 29 01 	sts	0x0129, r24
+
+}
+     642:	08 95       	ret
+
+00000644 <output_motor_ppm>:
+	static uint8_t ServoPPMRateCount;
+#endif
+
+
+	// if ESC's are high, we need to turn them off
+	if (output_motor_high)
+     644:	80 91 02 01 	lds	r24, 0x0102
+     648:	88 23       	and	r24, r24
+     64a:	09 f4       	brne	.+2      	; 0x64e <output_motor_ppm+0xa>
+     64c:	0f c1       	rjmp	.+542    	; 0x86c <output_motor_ppm+0x228>
+	{
+
+		// set motor limits (0 -> 100)
+		if ( MotorOut1 < 0 ) MotorOut1 = 0;
+     64e:	80 91 20 01 	lds	r24, 0x0120
+     652:	90 91 21 01 	lds	r25, 0x0121
+     656:	99 23       	and	r25, r25
+     658:	2c f4       	brge	.+10     	; 0x664 <output_motor_ppm+0x20>
+     65a:	10 92 21 01 	sts	0x0121, r1
+     65e:	10 92 20 01 	sts	0x0120, r1
+     662:	09 c0       	rjmp	.+18     	; 0x676 <output_motor_ppm+0x32>
+		else if ( MotorOut1 > 100 ) MotorOut1 = 100;
+     664:	85 36       	cpi	r24, 0x65	; 101
+     666:	91 05       	cpc	r25, r1
+     668:	34 f0       	brlt	.+12     	; 0x676 <output_motor_ppm+0x32>
+     66a:	84 e6       	ldi	r24, 0x64	; 100
+     66c:	90 e0       	ldi	r25, 0x00	; 0
+     66e:	90 93 21 01 	sts	0x0121, r25
+     672:	80 93 20 01 	sts	0x0120, r24
+		if ( MotorOut2 < 0 ) MotorOut2 = 0;
+     676:	80 91 2b 01 	lds	r24, 0x012B
+     67a:	90 91 2c 01 	lds	r25, 0x012C
+     67e:	99 23       	and	r25, r25
+     680:	2c f4       	brge	.+10     	; 0x68c <output_motor_ppm+0x48>
+     682:	10 92 2c 01 	sts	0x012C, r1
+     686:	10 92 2b 01 	sts	0x012B, r1
+     68a:	09 c0       	rjmp	.+18     	; 0x69e <output_motor_ppm+0x5a>
+		else if ( MotorOut2 > 100 ) MotorOut2 = 100;
+     68c:	85 36       	cpi	r24, 0x65	; 101
+     68e:	91 05       	cpc	r25, r1
+     690:	34 f0       	brlt	.+12     	; 0x69e <output_motor_ppm+0x5a>
+     692:	84 e6       	ldi	r24, 0x64	; 100
+     694:	90 e0       	ldi	r25, 0x00	; 0
+     696:	90 93 2c 01 	sts	0x012C, r25
+     69a:	80 93 2b 01 	sts	0x012B, r24
+		if ( MotorOut3 < 0 ) MotorOut3 = 0;
+     69e:	80 91 39 01 	lds	r24, 0x0139
+     6a2:	90 91 3a 01 	lds	r25, 0x013A
+     6a6:	99 23       	and	r25, r25
+     6a8:	2c f4       	brge	.+10     	; 0x6b4 <output_motor_ppm+0x70>
+     6aa:	10 92 3a 01 	sts	0x013A, r1
+     6ae:	10 92 39 01 	sts	0x0139, r1
+     6b2:	09 c0       	rjmp	.+18     	; 0x6c6 <output_motor_ppm+0x82>
+		else if ( MotorOut3 > 100 ) MotorOut3 = 100;
+     6b4:	85 36       	cpi	r24, 0x65	; 101
+     6b6:	91 05       	cpc	r25, r1
+     6b8:	34 f0       	brlt	.+12     	; 0x6c6 <output_motor_ppm+0x82>
+     6ba:	84 e6       	ldi	r24, 0x64	; 100
+     6bc:	90 e0       	ldi	r25, 0x00	; 0
+     6be:	90 93 3a 01 	sts	0x013A, r25
+     6c2:	80 93 39 01 	sts	0x0139, r24
+		if ( MotorOut4 < 0 ) MotorOut4 = 0;
+     6c6:	80 91 2f 01 	lds	r24, 0x012F
+     6ca:	90 91 30 01 	lds	r25, 0x0130
+     6ce:	99 23       	and	r25, r25
+     6d0:	2c f4       	brge	.+10     	; 0x6dc <output_motor_ppm+0x98>
+     6d2:	10 92 30 01 	sts	0x0130, r1
+     6d6:	10 92 2f 01 	sts	0x012F, r1
+     6da:	09 c0       	rjmp	.+18     	; 0x6ee <output_motor_ppm+0xaa>
+		else if ( MotorOut4 > 100 ) MotorOut4 = 100;
+     6dc:	85 36       	cpi	r24, 0x65	; 101
+     6de:	91 05       	cpc	r25, r1
+     6e0:	34 f0       	brlt	.+12     	; 0x6ee <output_motor_ppm+0xaa>
+     6e2:	84 e6       	ldi	r24, 0x64	; 100
+     6e4:	90 e0       	ldi	r25, 0x00	; 0
+     6e6:	90 93 30 01 	sts	0x0130, r25
+     6ea:	80 93 2f 01 	sts	0x012F, r24
+		if ( MotorOut6 < 0 ) MotorOut6 = 0;
+		else if ( MotorOut6 > 100 ) MotorOut6 = 100;
+#endif
+
+		// now calculate the time already passed that Motors were HIGH
+		ElapsedTCNT1 = (TCNT1 - MotorStartTCNT1);
+     6ee:	80 91 84 00 	lds	r24, 0x0084
+     6f2:	90 91 85 00 	lds	r25, 0x0085
+     6f6:	20 91 0e 01 	lds	r18, 0x010E
+     6fa:	30 91 0f 01 	lds	r19, 0x010F
+     6fe:	82 1b       	sub	r24, r18
+     700:	93 0b       	sbc	r25, r19
+     702:	90 93 11 01 	sts	0x0111, r25
+     706:	80 93 10 01 	sts	0x0110, r24
+
+		// start output timer
+		TIFR0 &= ~(1 << TOV0);	// clr overflow
+     70a:	a8 98       	cbi	0x15, 0	; 21
+		TCNT0 = 0;							// reset counter
+     70c:	16 bc       	out	0x26, r1	; 38
+
+		// convert into 10uS intervals
+		num_of_10uS = (ElapsedTCNT1 / 10) + 1;
+     70e:	6a e0       	ldi	r22, 0x0A	; 10
+     710:	70 e0       	ldi	r23, 0x00	; 0
+     712:	0e 94 4e 08 	call	0x109c	; 0x109c <__udivmodhi4>
+     716:	6f 5f       	subi	r22, 0xFF	; 255
+     718:	60 93 12 01 	sts	0x0112, r22
+		MotorAdjust = 100 - num_of_10uS;
+     71c:	26 2f       	mov	r18, r22
+     71e:	33 27       	eor	r19, r19
+     720:	27 fd       	sbrc	r18, 7
+     722:	30 95       	com	r19
+     724:	84 e6       	ldi	r24, 0x64	; 100
+     726:	90 e0       	ldi	r25, 0x00	; 0
+     728:	82 1b       	sub	r24, r18
+     72a:	93 0b       	sbc	r25, r19
+     72c:	90 93 14 01 	sts	0x0114, r25
+     730:	80 93 13 01 	sts	0x0113, r24
+
+		// add adjustment (1mS - time already gone) to all channels
+		MotorOut1 += MotorAdjust;
+     734:	20 91 20 01 	lds	r18, 0x0120
+     738:	30 91 21 01 	lds	r19, 0x0121
+     73c:	28 0f       	add	r18, r24
+     73e:	39 1f       	adc	r19, r25
+     740:	30 93 21 01 	sts	0x0121, r19
+     744:	20 93 20 01 	sts	0x0120, r18
+		MotorOut2 += MotorAdjust;
+     748:	20 91 2b 01 	lds	r18, 0x012B
+     74c:	30 91 2c 01 	lds	r19, 0x012C
+     750:	28 0f       	add	r18, r24
+     752:	39 1f       	adc	r19, r25
+     754:	30 93 2c 01 	sts	0x012C, r19
+     758:	20 93 2b 01 	sts	0x012B, r18
+		MotorOut3 += MotorAdjust;
+     75c:	20 91 39 01 	lds	r18, 0x0139
+     760:	30 91 3a 01 	lds	r19, 0x013A
+     764:	28 0f       	add	r18, r24
+     766:	39 1f       	adc	r19, r25
+     768:	30 93 3a 01 	sts	0x013A, r19
+     76c:	20 93 39 01 	sts	0x0139, r18
+		MotorOut4 += MotorAdjust;
+     770:	20 91 2f 01 	lds	r18, 0x012F
+     774:	30 91 30 01 	lds	r19, 0x0130
+     778:	82 0f       	add	r24, r18
+     77a:	93 1f       	adc	r25, r19
+     77c:	90 93 30 01 	sts	0x0130, r25
+     780:	80 93 2f 01 	sts	0x012F, r24
+
+		// keep signal on for correct time
+		// MotorOutX = 100 -> 200
+		// Pulse len = 1   -> 2    mS
+
+		TIFR0 &= ~(1 << TOV0);	// clr overflow
+     784:	a8 98       	cbi	0x15, 0	; 21
+		TCNT0 = 0;							// reset counter
+     786:	16 bc       	out	0x26, r1	; 38
+
+		for (i=num_of_10uS;i<200;i++)	
+     788:	60 93 15 01 	sts	0x0115, r22
+     78c:	68 3c       	cpi	r22, 0xC8	; 200
+     78e:	08 f0       	brcs	.+2      	; 0x792 <output_motor_ppm+0x14e>
+     790:	46 c0       	rjmp	.+140    	; 0x81e <output_motor_ppm+0x1da>
+		{
+			while (TCNT0 < 80);		// 10uS @ 8MHz = 80 // 10 @ 1MHz = 10uS
+     792:	86 b5       	in	r24, 0x26	; 38
+     794:	80 35       	cpi	r24, 0x50	; 80
+     796:	e8 f3       	brcs	.-6      	; 0x792 <output_motor_ppm+0x14e>
+			TCNT0 -= 80;
+     798:	86 b5       	in	r24, 0x26	; 38
+     79a:	80 55       	subi	r24, 0x50	; 80
+     79c:	86 bd       	out	0x26, r24	; 38
+
+			if (MotorOut1) 
+     79e:	80 91 20 01 	lds	r24, 0x0120
+     7a2:	90 91 21 01 	lds	r25, 0x0121
+     7a6:	00 97       	sbiw	r24, 0x00	; 0
+     7a8:	41 f0       	breq	.+16     	; 0x7ba <output_motor_ppm+0x176>
+			{
+				MotorOut1--;
+     7aa:	01 97       	sbiw	r24, 0x01	; 1
+     7ac:	90 93 21 01 	sts	0x0121, r25
+     7b0:	80 93 20 01 	sts	0x0120, r24
+				if (MotorOut1==0) M1 = 0;
+     7b4:	00 97       	sbiw	r24, 0x00	; 0
+     7b6:	09 f4       	brne	.+2      	; 0x7ba <output_motor_ppm+0x176>
+     7b8:	2a 98       	cbi	0x05, 2	; 5
+			}
+			if (MotorOut2) 
+     7ba:	80 91 2b 01 	lds	r24, 0x012B
+     7be:	90 91 2c 01 	lds	r25, 0x012C
+     7c2:	00 97       	sbiw	r24, 0x00	; 0
+     7c4:	41 f0       	breq	.+16     	; 0x7d6 <output_motor_ppm+0x192>
+			{
+				MotorOut2--;
+     7c6:	01 97       	sbiw	r24, 0x01	; 1
+     7c8:	90 93 2c 01 	sts	0x012C, r25
+     7cc:	80 93 2b 01 	sts	0x012B, r24
+				if (MotorOut2==0) M2 = 0;
+     7d0:	00 97       	sbiw	r24, 0x00	; 0
+     7d2:	09 f4       	brne	.+2      	; 0x7d6 <output_motor_ppm+0x192>
+     7d4:	29 98       	cbi	0x05, 1	; 5
+			}
+			if (MotorOut3) 
+     7d6:	80 91 39 01 	lds	r24, 0x0139
+     7da:	90 91 3a 01 	lds	r25, 0x013A
+     7de:	00 97       	sbiw	r24, 0x00	; 0
+     7e0:	41 f0       	breq	.+16     	; 0x7f2 <output_motor_ppm+0x1ae>
+			{
+				MotorOut3--;
+     7e2:	01 97       	sbiw	r24, 0x01	; 1
+     7e4:	90 93 3a 01 	sts	0x013A, r25
+     7e8:	80 93 39 01 	sts	0x0139, r24
+				if (MotorOut3==0) M3 = 0;
+     7ec:	00 97       	sbiw	r24, 0x00	; 0
+     7ee:	09 f4       	brne	.+2      	; 0x7f2 <output_motor_ppm+0x1ae>
+     7f0:	28 98       	cbi	0x05, 0	; 5
+			}
+			if (MotorOut4) 
+     7f2:	80 91 2f 01 	lds	r24, 0x012F
+     7f6:	90 91 30 01 	lds	r25, 0x0130
+     7fa:	00 97       	sbiw	r24, 0x00	; 0
+     7fc:	41 f0       	breq	.+16     	; 0x80e <output_motor_ppm+0x1ca>
+			{
+				MotorOut4--;
+     7fe:	01 97       	sbiw	r24, 0x01	; 1
+     800:	90 93 30 01 	sts	0x0130, r25
+     804:	80 93 2f 01 	sts	0x012F, r24
+				if (MotorOut4==0) M4 = 0;
+     808:	00 97       	sbiw	r24, 0x00	; 0
+     80a:	09 f4       	brne	.+2      	; 0x80e <output_motor_ppm+0x1ca>
+     80c:	5f 98       	cbi	0x0b, 7	; 11
+		// Pulse len = 1   -> 2    mS
+
+		TIFR0 &= ~(1 << TOV0);	// clr overflow
+		TCNT0 = 0;							// reset counter
+
+		for (i=num_of_10uS;i<200;i++)	
+     80e:	80 91 15 01 	lds	r24, 0x0115
+     812:	8f 5f       	subi	r24, 0xFF	; 255
+     814:	80 93 15 01 	sts	0x0115, r24
+     818:	88 3c       	cpi	r24, 0xC8	; 200
+     81a:	08 f4       	brcc	.+2      	; 0x81e <output_motor_ppm+0x1da>
+     81c:	ba cf       	rjmp	.-140    	; 0x792 <output_motor_ppm+0x14e>
+			}
+	#endif
+		}
+
+		//Now wait low signal interval
+		PWM_Low_Count = PWM_Low_Pulse_Interval - 1;
+     81e:	80 91 00 01 	lds	r24, 0x0100
+     822:	90 91 01 01 	lds	r25, 0x0101
+     826:	01 97       	sbiw	r24, 0x01	; 1
+     828:	90 93 17 01 	sts	0x0117, r25
+     82c:	80 93 16 01 	sts	0x0116, r24
+
+		TIFR0 &= ~(1 << TOV0);	// clr overflow
+     830:	a8 98       	cbi	0x15, 0	; 21
+		TCNT0 = 0;							// reset counter
+     832:	16 bc       	out	0x26, r1	; 38
+
+		while (PWM_Low_Count--)
+     834:	9c 01       	movw	r18, r24
+     836:	21 50       	subi	r18, 0x01	; 1
+     838:	30 40       	sbci	r19, 0x00	; 0
+     83a:	30 93 17 01 	sts	0x0117, r19
+     83e:	20 93 16 01 	sts	0x0116, r18
+     842:	00 97       	sbiw	r24, 0x00	; 0
+     844:	99 f0       	breq	.+38     	; 0x86c <output_motor_ppm+0x228>
+		{
+			while (TCNT0 < 80);		// 20 @ 2MHz = 10uS
+     846:	86 b5       	in	r24, 0x26	; 38
+     848:	80 35       	cpi	r24, 0x50	; 80
+     84a:	e8 f3       	brcs	.-6      	; 0x846 <output_motor_ppm+0x202>
+			TCNT0 -= 80;
+     84c:	86 b5       	in	r24, 0x26	; 38
+     84e:	80 55       	subi	r24, 0x50	; 80
+     850:	86 bd       	out	0x26, r24	; 38
+		PWM_Low_Count = PWM_Low_Pulse_Interval - 1;
+
+		TIFR0 &= ~(1 << TOV0);	// clr overflow
+		TCNT0 = 0;							// reset counter
+
+		while (PWM_Low_Count--)
+     852:	80 91 16 01 	lds	r24, 0x0116
+     856:	90 91 17 01 	lds	r25, 0x0117
+     85a:	9c 01       	movw	r18, r24
+     85c:	21 50       	subi	r18, 0x01	; 1
+     85e:	30 40       	sbci	r19, 0x00	; 0
+     860:	30 93 17 01 	sts	0x0117, r19
+     864:	20 93 16 01 	sts	0x0116, r18
+     868:	00 97       	sbiw	r24, 0x00	; 0
+     86a:	69 f7       	brne	.-38     	; 0x846 <output_motor_ppm+0x202>
+			while (TCNT0 < 80);		// 20 @ 2MHz = 10uS
+			TCNT0 -= 80;
+		}
+	}
+
+	if (! Armed) return;
+     86c:	80 91 3d 01 	lds	r24, 0x013D
+     870:	88 23       	and	r24, r24
+     872:	79 f0       	breq	.+30     	; 0x892 <output_motor_ppm+0x24e>
+
+	// Log PWM signal HIGH	
+  MotorStartTCNT1 = TCNT1;
+     874:	80 91 84 00 	lds	r24, 0x0084
+     878:	90 91 85 00 	lds	r25, 0x0085
+     87c:	90 93 0f 01 	sts	0x010F, r25
+     880:	80 93 0e 01 	sts	0x010E, r24
+	output_motor_high = true;
+     884:	81 e0       	ldi	r24, 0x01	; 1
+     886:	80 93 02 01 	sts	0x0102, r24
+
+	// turn on pins
+	M1 = 1;
+     88a:	2a 9a       	sbi	0x05, 2	; 5
+	M2 = 1;
+     88c:	29 9a       	sbi	0x05, 1	; 5
+	M3 = 1;
+     88e:	28 9a       	sbi	0x05, 0	; 5
+		ServoPPMRateCount = 1;
+	} else {
+		ServoPPMRateCount++;
+	}
+#else
+	M4 = 1;
+     890:	5f 9a       	sbi	0x0b, 7	; 11
+     892:	08 95       	ret
+
+00000894 <loop>:
+		}
+	}
+}
+
+void loop(void)
+{
+     894:	cf 92       	push	r12
+     896:	df 92       	push	r13
+     898:	ef 92       	push	r14
+     89a:	ff 92       	push	r15
+     89c:	0f 93       	push	r16
+     89e:	1f 93       	push	r17
+     8a0:	cf 93       	push	r28
+     8a2:	df 93       	push	r29
+	static uint16_t Change_Arming=0;
+	static uint8_t Arming_TCNT2=0;
+
+	RxGetChannels();
+     8a4:	0e 94 c3 02 	call	0x586	; 0x586 <RxGetChannels>
+
+	if ( RxInCollective < 0) {
+     8a8:	80 91 18 01 	lds	r24, 0x0118
+     8ac:	90 91 19 01 	lds	r25, 0x0119
+     8b0:	99 23       	and	r25, r25
+     8b2:	0c f0       	brlt	.+2      	; 0x8b6 <loop+0x22>
+     8b4:	4d c0       	rjmp	.+154    	; 0x950 <loop+0xbc>
+		// check for stick arming (Timer2 @ 8MHz/1024 = 7812.5KHz)
+		// arm: yaw right (>60), dis-arm: yaw left (<-60)
+		Change_Arming += (uint8_t) (TCNT2 - Arming_TCNT2);
+     8b6:	e2 eb       	ldi	r30, 0xB2	; 178
+     8b8:	f0 e0       	ldi	r31, 0x00	; 0
+     8ba:	20 81       	ld	r18, Z
+     8bc:	80 91 09 01 	lds	r24, 0x0109
+     8c0:	28 1b       	sub	r18, r24
+     8c2:	80 91 0a 01 	lds	r24, 0x010A
+     8c6:	90 91 0b 01 	lds	r25, 0x010B
+     8ca:	82 0f       	add	r24, r18
+     8cc:	91 1d       	adc	r25, r1
+     8ce:	90 93 0b 01 	sts	0x010B, r25
+     8d2:	80 93 0a 01 	sts	0x010A, r24
+		Arming_TCNT2 = TCNT2;
+     8d6:	80 81       	ld	r24, Z
+     8d8:	80 93 09 01 	sts	0x0109, r24
+
+#ifdef STICKARM_LEFT
+		if (Armed) {
+     8dc:	20 91 3d 01 	lds	r18, 0x013D
+     8e0:	22 23       	and	r18, r18
+     8e2:	61 f0       	breq	.+24     	; 0x8fc <loop+0x68>
+			if (RxInYaw<STICKARM_POINT) 	Change_Arming = 0;		// re-set count
+     8e4:	80 91 29 01 	lds	r24, 0x0129
+     8e8:	90 91 2a 01 	lds	r25, 0x012A
+     8ec:	8c 33       	cpi	r24, 0x3C	; 60
+     8ee:	91 05       	cpc	r25, r1
+     8f0:	94 f4       	brge	.+36     	; 0x916 <loop+0x82>
+     8f2:	10 92 0b 01 	sts	0x010B, r1
+     8f6:	10 92 0a 01 	sts	0x010A, r1
+     8fa:	2a c0       	rjmp	.+84     	; 0x950 <loop+0xbc>
+		} else {
+			if (RxInYaw>-STICKARM_POINT) 	Change_Arming = 0;		// re-set count
+     8fc:	80 91 29 01 	lds	r24, 0x0129
+     900:	90 91 2a 01 	lds	r25, 0x012A
+     904:	3f ef       	ldi	r19, 0xFF	; 255
+     906:	85 3c       	cpi	r24, 0xC5	; 197
+     908:	93 07       	cpc	r25, r19
+     90a:	2c f0       	brlt	.+10     	; 0x916 <loop+0x82>
+     90c:	10 92 0b 01 	sts	0x010B, r1
+     910:	10 92 0a 01 	sts	0x010A, r1
+     914:	1d c0       	rjmp	.+58     	; 0x950 <loop+0xbc>
+			if (RxInYaw>-STICKARM_POINT) 	Change_Arming = 0;		// re-set count
+		}
+#endif
+		// 3Sec / 0.000128 = 23437 = 0x5B8D or 
+		// 2.5Sec / 0.000128 = 19531 = 0x4C4B
+		if (Change_Arming>0x4C4B)
+     916:	80 91 0a 01 	lds	r24, 0x010A
+     91a:	90 91 0b 01 	lds	r25, 0x010B
+     91e:	ac e4       	ldi	r26, 0x4C	; 76
+     920:	8c 34       	cpi	r24, 0x4C	; 76
+     922:	9a 07       	cpc	r25, r26
+     924:	a8 f0       	brcs	.+42     	; 0x950 <loop+0xbc>
+		{
+			Armed = ! Armed;
+     926:	81 e0       	ldi	r24, 0x01	; 1
+     928:	28 27       	eor	r18, r24
+     92a:	20 93 3d 01 	sts	0x013D, r18
+			LED = 0;
+     92e:	2e 98       	cbi	0x05, 6	; 5
+			if (Armed) {
+     930:	22 23       	and	r18, r18
+     932:	31 f0       	breq	.+12     	; 0x940 <loop+0xac>
+				output_motor_high = false;	// re-set 1st time flag
+     934:	10 92 02 01 	sts	0x0102, r1
+				CalibrateGyros();
+     938:	0e 94 1a 02 	call	0x434	; 0x434 <CalibrateGyros>
+				LED = 1;
+     93c:	2e 9a       	sbi	0x05, 6	; 5
+     93e:	2f c1       	rjmp	.+606    	; 0xb9e <loop+0x30a>
+			}	else if (output_motor_high) {
+     940:	80 91 02 01 	lds	r24, 0x0102
+     944:	88 23       	and	r24, r24
+     946:	09 f4       	brne	.+2      	; 0x94a <loop+0xb6>
+     948:	2a c1       	rjmp	.+596    	; 0xb9e <loop+0x30a>
+				output_motor_ppm();					// turn off
+     94a:	0e 94 22 03 	call	0x644	; 0x644 <output_motor_ppm>
+     94e:	27 c1       	rjmp	.+590    	; 0xb9e <loop+0x30a>
+		}
+	}
+
+
+	//--- Read gyros ---
+	ReadGyros(false);
+     950:	80 e0       	ldi	r24, 0x00	; 0
+     952:	0e 94 8e 01 	call	0x31c	; 0x31c <ReadGyros>
+
+	//--- Start mixing by setting collective to motor input 1,2,3 and 4 ---
+	if (RxInCollective > MAX_COLLECTIVE) RxInCollective = MAX_COLLECTIVE;
+     956:	80 91 18 01 	lds	r24, 0x0118
+     95a:	90 91 19 01 	lds	r25, 0x0119
+     95e:	80 36       	cpi	r24, 0x60	; 96
+     960:	91 05       	cpc	r25, r1
+     962:	34 f0       	brlt	.+12     	; 0x970 <loop+0xdc>
+     964:	8f e5       	ldi	r24, 0x5F	; 95
+     966:	90 e0       	ldi	r25, 0x00	; 0
+     968:	90 93 19 01 	sts	0x0119, r25
+     96c:	80 93 18 01 	sts	0x0118, r24
+	MotorOut1 = RxInCollective;
+     970:	e0 91 18 01 	lds	r30, 0x0118
+     974:	f0 91 19 01 	lds	r31, 0x0119
+	MotorOut5 = RxInCollective;
+	MotorOut6 = RxInCollective;
+#endif
+	//--- Calculate roll gyro output ---
+	// nb IF YOU CHANGE THIS CODE, YOU MUST REMOVE PROPS BEFORE TESTING !!!
+	gyroADC[ROLL] = gyroADC[ROLL] * GainIn[ROLL] * ROLL_GAIN_MULTIPLIER;
+     978:	80 91 31 01 	lds	r24, 0x0131
+     97c:	90 91 32 01 	lds	r25, 0x0132
+     980:	9c 01       	movw	r18, r24
+     982:	22 0f       	add	r18, r18
+     984:	33 1f       	adc	r19, r19
+     986:	28 0f       	add	r18, r24
+     988:	39 1f       	adc	r19, r25
+     98a:	40 91 1a 01 	lds	r20, 0x011A
+     98e:	50 91 1b 01 	lds	r21, 0x011B
+     992:	24 9f       	mul	r18, r20
+     994:	c0 01       	movw	r24, r0
+     996:	25 9f       	mul	r18, r21
+     998:	90 0d       	add	r25, r0
+     99a:	34 9f       	mul	r19, r20
+     99c:	90 0d       	add	r25, r0
+     99e:	11 24       	eor	r1, r1
+	gyroADC[ROLL] /=100;
+     9a0:	64 e6       	ldi	r22, 0x64	; 100
+     9a2:	70 e0       	ldi	r23, 0x00	; 0
+     9a4:	0e 94 62 08 	call	0x10c4	; 0x10c4 <__divmodhi4>
+     9a8:	70 93 1b 01 	sts	0x011B, r23
+     9ac:	60 93 1a 01 	sts	0x011A, r22
+
+#if ROLL_STICK_DIVIDER > 0
+	RxInRoll = (RxInRoll >> ROLL_STICK_DIVIDER);		// scale stick output
+     9b0:	80 91 27 01 	lds	r24, 0x0127
+     9b4:	90 91 28 01 	lds	r25, 0x0128
+     9b8:	95 95       	asr	r25
+     9ba:	87 95       	ror	r24
+#endif
+
+	if (Config.RollGyroDirection == GYRO_NORMAL) {
+     9bc:	20 91 4e 01 	lds	r18, 0x014E
+     9c0:	22 23       	and	r18, r18
+     9c2:	39 f4       	brne	.+14     	; 0x9d2 <loop+0x13e>
+		RxInRoll += gyroADC[ROLL];
+     9c4:	68 0f       	add	r22, r24
+     9c6:	79 1f       	adc	r23, r25
+     9c8:	70 93 28 01 	sts	0x0128, r23
+     9cc:	60 93 27 01 	sts	0x0127, r22
+     9d0:	06 c0       	rjmp	.+12     	; 0x9de <loop+0x14a>
+	} else {
+		RxInRoll -= gyroADC[ROLL];
+     9d2:	86 1b       	sub	r24, r22
+     9d4:	97 0b       	sbc	r25, r23
+     9d6:	90 93 28 01 	sts	0x0128, r25
+     9da:	80 93 27 01 	sts	0x0127, r24
+#ifdef TRI_COPTER
+	RxInRoll	= (RxInRoll * 20)/23;	//RxInRollSine 60= 0.866 ~ 20/23 or possibly 7/8
+	MotorOut1 += RxInRoll;
+	MotorOut2 -= RxInRoll;
+#elif defined(QUAD_COPTER)
+	MotorOut2 += RxInRoll;
+     9de:	80 91 27 01 	lds	r24, 0x0127
+     9e2:	90 91 28 01 	lds	r25, 0x0128
+     9e6:	7f 01       	movw	r14, r30
+     9e8:	e8 0e       	add	r14, r24
+     9ea:	f9 1e       	adc	r15, r25
+	MotorOut3 -= RxInRoll;
+     9ec:	6f 01       	movw	r12, r30
+     9ee:	c8 1a       	sub	r12, r24
+     9f0:	d9 0a       	sbc	r13, r25
+#error No Copter configuration defined !!!!
+#endif
+
+	//--- Calculate pitch gyro output ---
+	// nb IF YOU CHANGE THIS CODE, YOU MUST REMOVE PROPS BEFORE TESTING !!!
+  gyroADC[PITCH] = gyroADC[PITCH] * GainIn[PITCH] * PITCH_GAIN_MULTIPLIER;  
+     9f2:	80 91 33 01 	lds	r24, 0x0133
+     9f6:	90 91 34 01 	lds	r25, 0x0134
+     9fa:	9c 01       	movw	r18, r24
+     9fc:	22 0f       	add	r18, r18
+     9fe:	33 1f       	adc	r19, r19
+     a00:	28 0f       	add	r18, r24
+     a02:	39 1f       	adc	r19, r25
+     a04:	40 91 1c 01 	lds	r20, 0x011C
+     a08:	50 91 1d 01 	lds	r21, 0x011D
+     a0c:	24 9f       	mul	r18, r20
+     a0e:	c0 01       	movw	r24, r0
+     a10:	25 9f       	mul	r18, r21
+     a12:	90 0d       	add	r25, r0
+     a14:	34 9f       	mul	r19, r20
+     a16:	90 0d       	add	r25, r0
+     a18:	11 24       	eor	r1, r1
+  gyroADC[PITCH] /=100;
+     a1a:	64 e6       	ldi	r22, 0x64	; 100
+     a1c:	70 e0       	ldi	r23, 0x00	; 0
+     a1e:	0e 94 62 08 	call	0x10c4	; 0x10c4 <__divmodhi4>
+     a22:	70 93 1d 01 	sts	0x011D, r23
+     a26:	60 93 1c 01 	sts	0x011C, r22
+
+#if PITCH_STICK_DIVIDER > 0
+	RxInPitch = (RxInPitch >> PITCH_STICK_DIVIDER);		// scale stick output
+     a2a:	80 91 3b 01 	lds	r24, 0x013B
+     a2e:	90 91 3c 01 	lds	r25, 0x013C
+     a32:	95 95       	asr	r25
+     a34:	87 95       	ror	r24
+#endif
+
+	if (Config.PitchGyroDirection == GYRO_NORMAL) {	
+     a36:	20 91 4f 01 	lds	r18, 0x014F
+     a3a:	22 23       	and	r18, r18
+     a3c:	39 f4       	brne	.+14     	; 0xa4c <loop+0x1b8>
+		RxInPitch += gyroADC[PITCH];
+     a3e:	86 0f       	add	r24, r22
+     a40:	97 1f       	adc	r25, r23
+     a42:	90 93 3c 01 	sts	0x013C, r25
+     a46:	80 93 3b 01 	sts	0x013B, r24
+     a4a:	06 c0       	rjmp	.+12     	; 0xa58 <loop+0x1c4>
+	} else {	
+		RxInPitch -= gyroADC[PITCH];
+     a4c:	86 1b       	sub	r24, r22
+     a4e:	97 0b       	sbc	r25, r23
+     a50:	90 93 3c 01 	sts	0x013C, r25
+     a54:	80 93 3b 01 	sts	0x013B, r24
+	MotorOut3 -= RxInPitch;
+	RxInPitch = (RxInPitch >> 1);	// cosine of 60
+	MotorOut1 += RxInPitch;
+	MotorOut2 += RxInPitch;
+#elif defined(QUAD_COPTER)
+	MotorOut1 += RxInPitch;
+     a58:	80 91 3b 01 	lds	r24, 0x013B
+     a5c:	90 91 3c 01 	lds	r25, 0x013C
+     a60:	ef 01       	movw	r28, r30
+     a62:	c8 0f       	add	r28, r24
+     a64:	d9 1f       	adc	r29, r25
+	MotorOut4 -= RxInPitch;
+     a66:	8f 01       	movw	r16, r30
+     a68:	08 1b       	sub	r16, r24
+     a6a:	19 0b       	sbc	r17, r25
+		RxInYaw -= gyroADC[YAW];
+	}
+	MotorOut4 = 50 + RxInYaw;
+#else
+	// nb IF YOU CHANGE THIS CODE, YOU MUST REMOVE PROPS BEFORE TESTING !!!
+	gyroADC[YAW] = (gyroADC[YAW] * GainIn[YAW] * YAW_GAIN_MULTIPLIER);
+     a6c:	80 91 35 01 	lds	r24, 0x0135
+     a70:	90 91 36 01 	lds	r25, 0x0136
+     a74:	9c 01       	movw	r18, r24
+     a76:	22 0f       	add	r18, r18
+     a78:	33 1f       	adc	r19, r19
+     a7a:	28 0f       	add	r18, r24
+     a7c:	39 1f       	adc	r19, r25
+     a7e:	40 91 1e 01 	lds	r20, 0x011E
+     a82:	50 91 1f 01 	lds	r21, 0x011F
+     a86:	24 9f       	mul	r18, r20
+     a88:	c0 01       	movw	r24, r0
+     a8a:	25 9f       	mul	r18, r21
+     a8c:	90 0d       	add	r25, r0
+     a8e:	34 9f       	mul	r19, r20
+     a90:	90 0d       	add	r25, r0
+     a92:	11 24       	eor	r1, r1
+	gyroADC[YAW] /=100;
+     a94:	64 e6       	ldi	r22, 0x64	; 100
+     a96:	70 e0       	ldi	r23, 0x00	; 0
+     a98:	0e 94 62 08 	call	0x10c4	; 0x10c4 <__divmodhi4>
+     a9c:	70 93 1f 01 	sts	0x011F, r23
+     aa0:	60 93 1e 01 	sts	0x011E, r22
+
+#if YAW_STICK_DIVIDER > 0
+	RxInYaw = (RxInYaw >> YAW_STICK_DIVIDER);		// scale stick output
+     aa4:	80 91 29 01 	lds	r24, 0x0129
+     aa8:	90 91 2a 01 	lds	r25, 0x012A
+     aac:	95 95       	asr	r25
+     aae:	87 95       	ror	r24
+#endif
+
+	if (Config.YawGyroDirection == GYRO_NORMAL)	{		// scale gyro output
+     ab0:	20 91 50 01 	lds	r18, 0x0150
+     ab4:	22 23       	and	r18, r18
+     ab6:	39 f4       	brne	.+14     	; 0xac6 <loop+0x232>
+		RxInYaw += gyroADC[YAW];
+     ab8:	86 0f       	add	r24, r22
+     aba:	97 1f       	adc	r25, r23
+     abc:	90 93 2a 01 	sts	0x012A, r25
+     ac0:	80 93 29 01 	sts	0x0129, r24
+     ac4:	06 c0       	rjmp	.+12     	; 0xad2 <loop+0x23e>
+	} else {
+		RxInYaw -= gyroADC[YAW];
+     ac6:	86 1b       	sub	r24, r22
+     ac8:	97 0b       	sbc	r25, r23
+     aca:	90 93 2a 01 	sts	0x012A, r25
+     ace:	80 93 29 01 	sts	0x0129, r24
+	}
+
+	//--- (Add)Adjust yaw gyro output to motors
+#ifdef QUAD_COPTER
+	MotorOut1 -= RxInYaw;
+     ad2:	80 91 29 01 	lds	r24, 0x0129
+     ad6:	90 91 2a 01 	lds	r25, 0x012A
+     ada:	9e 01       	movw	r18, r28
+     adc:	28 1b       	sub	r18, r24
+     ade:	39 0b       	sbc	r19, r25
+     ae0:	30 93 21 01 	sts	0x0121, r19
+     ae4:	20 93 20 01 	sts	0x0120, r18
+	MotorOut2 += RxInYaw;
+     ae8:	a7 01       	movw	r20, r14
+     aea:	48 0f       	add	r20, r24
+     aec:	59 1f       	adc	r21, r25
+     aee:	50 93 2c 01 	sts	0x012C, r21
+     af2:	40 93 2b 01 	sts	0x012B, r20
+	MotorOut3 += RxInYaw;
+     af6:	b6 01       	movw	r22, r12
+     af8:	68 0f       	add	r22, r24
+     afa:	79 1f       	adc	r23, r25
+     afc:	70 93 3a 01 	sts	0x013A, r23
+     b00:	60 93 39 01 	sts	0x0139, r22
+	MotorOut4 -= RxInYaw;
+     b04:	d8 01       	movw	r26, r16
+     b06:	a8 1b       	sub	r26, r24
+     b08:	b9 0b       	sbc	r27, r25
+     b0a:	cd 01       	movw	r24, r26
+     b0c:	b0 93 30 01 	sts	0x0130, r27
+     b10:	a0 93 2f 01 	sts	0x012F, r26
+#endif
+
+#endif
+
+	//--- Limit the lowest value to avoid stopping of motor if motor value is under-saturated ---
+	if ( MotorOut1 < 10 )	MotorOut1 = 10;		// this is the motor idle level
+     b14:	2a 30       	cpi	r18, 0x0A	; 10
+     b16:	31 05       	cpc	r19, r1
+     b18:	34 f4       	brge	.+12     	; 0xb26 <loop+0x292>
+     b1a:	2a e0       	ldi	r18, 0x0A	; 10
+     b1c:	30 e0       	ldi	r19, 0x00	; 0
+     b1e:	30 93 21 01 	sts	0x0121, r19
+     b22:	20 93 20 01 	sts	0x0120, r18
+	if ( MotorOut2 < 10 )	MotorOut2 = 10;	
+     b26:	4a 30       	cpi	r20, 0x0A	; 10
+     b28:	51 05       	cpc	r21, r1
+     b2a:	34 f4       	brge	.+12     	; 0xb38 <loop+0x2a4>
+     b2c:	2a e0       	ldi	r18, 0x0A	; 10
+     b2e:	30 e0       	ldi	r19, 0x00	; 0
+     b30:	30 93 2c 01 	sts	0x012C, r19
+     b34:	20 93 2b 01 	sts	0x012B, r18
+	if ( MotorOut3 < 10 )	MotorOut3 = 10;
+     b38:	6a 30       	cpi	r22, 0x0A	; 10
+     b3a:	71 05       	cpc	r23, r1
+     b3c:	34 f4       	brge	.+12     	; 0xb4a <loop+0x2b6>
+     b3e:	2a e0       	ldi	r18, 0x0A	; 10
+     b40:	30 e0       	ldi	r19, 0x00	; 0
+     b42:	30 93 3a 01 	sts	0x013A, r19
+     b46:	20 93 39 01 	sts	0x0139, r18
+#ifndef TRI_COPTER
+	if ( MotorOut4 < 10 )	MotorOut4 = 10;	
+     b4a:	8a 30       	cpi	r24, 0x0A	; 10
+     b4c:	91 05       	cpc	r25, r1
+     b4e:	34 f4       	brge	.+12     	; 0xb5c <loop+0x2c8>
+     b50:	8a e0       	ldi	r24, 0x0A	; 10
+     b52:	90 e0       	ldi	r25, 0x00	; 0
+     b54:	90 93 30 01 	sts	0x0130, r25
+     b58:	80 93 2f 01 	sts	0x012F, r24
+	if ( MotorOut5 < 10 )	MotorOut5 = 10;	
+	if ( MotorOut6 < 10 )	MotorOut6 = 10;	
+#endif	
+	//--- Output to motor ESC's ---
+
+	if (RxInCollective < 1 || !Armed || !GyroCalibrated)	// turn off motors if collective below 1% ???
+     b5c:	1e 16       	cp	r1, r30
+     b5e:	1f 06       	cpc	r1, r31
+     b60:	44 f4       	brge	.+16     	; 0xb72 <loop+0x2de>
+     b62:	80 91 3d 01 	lds	r24, 0x013D
+     b66:	88 23       	and	r24, r24
+     b68:	21 f0       	breq	.+8      	; 0xb72 <loop+0x2de>
+     b6a:	80 91 22 01 	lds	r24, 0x0122
+     b6e:	88 23       	and	r24, r24
+     b70:	a1 f4       	brne	.+40     	; 0xb9a <loop+0x306>
+	{																									// or  if gyros not calibrated
+		MotorOut1 = 0;
+     b72:	10 92 21 01 	sts	0x0121, r1
+     b76:	10 92 20 01 	sts	0x0120, r1
+		MotorOut2 = 0;
+     b7a:	10 92 2c 01 	sts	0x012C, r1
+     b7e:	10 92 2b 01 	sts	0x012B, r1
+		MotorOut3 = 0;
+     b82:	10 92 3a 01 	sts	0x013A, r1
+     b86:	10 92 39 01 	sts	0x0139, r1
+#ifndef TRI_COPTER
+		MotorOut4 = 0;
+     b8a:	10 92 30 01 	sts	0x0130, r1
+     b8e:	10 92 2f 01 	sts	0x012F, r1
+		MotorOut5 = 0;
+		MotorOut6 = 0;
+#endif
+	}
+
+	if (Armed) output_motor_ppm();		// output ESC signal
+     b92:	80 91 3d 01 	lds	r24, 0x013D
+     b96:	88 23       	and	r24, r24
+     b98:	11 f0       	breq	.+4      	; 0xb9e <loop+0x30a>
+     b9a:	0e 94 22 03 	call	0x644	; 0x644 <output_motor_ppm>
+}
+     b9e:	df 91       	pop	r29
+     ba0:	cf 91       	pop	r28
+     ba2:	1f 91       	pop	r17
+     ba4:	0f 91       	pop	r16
+     ba6:	ff 90       	pop	r15
+     ba8:	ef 90       	pop	r14
+     baa:	df 90       	pop	r13
+     bac:	cf 90       	pop	r12
+     bae:	08 95       	ret
+
+00000bb0 <eeprom_write_byte_changed>:
+#endif
+
+}
+
+void eeprom_write_byte_changed( uint8_t * addr, uint8_t value )
+{ 
+     bb0:	1f 93       	push	r17
+     bb2:	cf 93       	push	r28
+     bb4:	df 93       	push	r29
+     bb6:	ec 01       	movw	r28, r24
+     bb8:	16 2f       	mov	r17, r22
+	if(eeprom_read_byte(addr) != value)
+     bba:	0e 94 85 08 	call	0x110a	; 0x110a <__eerd_byte_m168pa>
+     bbe:	81 17       	cp	r24, r17
+     bc0:	21 f0       	breq	.+8      	; 0xbca <eeprom_write_byte_changed+0x1a>
+	{
+		eeprom_write_byte( addr, value );
+     bc2:	ce 01       	movw	r24, r28
+     bc4:	61 2f       	mov	r22, r17
+     bc6:	0e 94 8d 08 	call	0x111a	; 0x111a <__eewr_byte_m168pa>
+	}
+}
+     bca:	df 91       	pop	r29
+     bcc:	cf 91       	pop	r28
+     bce:	1f 91       	pop	r17
+     bd0:	08 95       	ret
+
+00000bd2 <eeprom_write_block_changes>:
+
+void eeprom_write_block_changes( const uint8_t * src, void * dest, size_t size )
+{ 
+     bd2:	ef 92       	push	r14
+     bd4:	ff 92       	push	r15
+     bd6:	0f 93       	push	r16
+     bd8:	1f 93       	push	r17
+     bda:	cf 93       	push	r28
+     bdc:	df 93       	push	r29
+     bde:	ec 01       	movw	r28, r24
+     be0:	7b 01       	movw	r14, r22
+	size_t len;
+
+	for(len=0;len<size;len++)
+     be2:	41 15       	cp	r20, r1
+     be4:	51 05       	cpc	r21, r1
+     be6:	69 f0       	breq	.+26     	; 0xc02 <eeprom_write_block_changes+0x30>
+	{
+		eeprom_write_byte( addr, value );
+	}
+}
+
+void eeprom_write_block_changes( const uint8_t * src, void * dest, size_t size )
+     be8:	8c 01       	movw	r16, r24
+     bea:	04 0f       	add	r16, r20
+     bec:	15 1f       	adc	r17, r21
+{ 
+	size_t len;
+
+	for(len=0;len<size;len++)
+	{
+		eeprom_write_byte_changed( dest,  *src );
+     bee:	c7 01       	movw	r24, r14
+     bf0:	69 91       	ld	r22, Y+
+     bf2:	0e 94 d8 05 	call	0xbb0	; 0xbb0 <eeprom_write_byte_changed>
+
+		src++;
+		dest++;
+     bf6:	08 94       	sec
+     bf8:	e1 1c       	adc	r14, r1
+     bfa:	f1 1c       	adc	r15, r1
+
+void eeprom_write_block_changes( const uint8_t * src, void * dest, size_t size )
+{ 
+	size_t len;
+
+	for(len=0;len<size;len++)
+     bfc:	c0 17       	cp	r28, r16
+     bfe:	d1 07       	cpc	r29, r17
+     c00:	b1 f7       	brne	.-20     	; 0xbee <eeprom_write_block_changes+0x1c>
+		eeprom_write_byte_changed( dest,  *src );
+
+		src++;
+		dest++;
+	}
+}
+     c02:	df 91       	pop	r29
+     c04:	cf 91       	pop	r28
+     c06:	1f 91       	pop	r17
+     c08:	0f 91       	pop	r16
+     c0a:	ff 90       	pop	r15
+     c0c:	ef 90       	pop	r14
+     c0e:	08 95       	ret
+
+00000c10 <Set_EEPROM_Default_Config>:
+	}
+}
+
+void Set_EEPROM_Default_Config(void)
+{
+	Config.RollGyroDirection 		= GYRO_REVERSED;
+     c10:	81 e0       	ldi	r24, 0x01	; 1
+     c12:	80 93 4e 01 	sts	0x014E, r24
+	Config.PitchGyroDirection		= GYRO_REVERSED;
+     c16:	80 93 4f 01 	sts	0x014F, r24
+	Config.YawGyroDirection			= GYRO_NORMAL;
+     c1a:	10 92 50 01 	sts	0x0150, r1
+
+	Config.RxChannel1ZeroOffset	= 1520;
+     c1e:	80 ef       	ldi	r24, 0xF0	; 240
+     c20:	95 e0       	ldi	r25, 0x05	; 5
+     c22:	90 93 52 01 	sts	0x0152, r25
+     c26:	80 93 51 01 	sts	0x0151, r24
+	Config.RxChannel2ZeroOffset	= 1520;
+     c2a:	90 93 54 01 	sts	0x0154, r25
+     c2e:	80 93 53 01 	sts	0x0153, r24
+	Config.RxChannel3ZeroOffset	= 1120;
+     c32:	20 e6       	ldi	r18, 0x60	; 96
+     c34:	34 e0       	ldi	r19, 0x04	; 4
+     c36:	30 93 56 01 	sts	0x0156, r19
+     c3a:	20 93 55 01 	sts	0x0155, r18
+	Config.RxChannel4ZeroOffset	= 1520;
+     c3e:	90 93 58 01 	sts	0x0158, r25
+     c42:	80 93 57 01 	sts	0x0157, r24
+}
+     c46:	08 95       	ret
+
+00000c48 <Save_Config_to_EEPROM>:
+
+void Save_Config_to_EEPROM(void)
+{
+	// write to eeProm
+	cli();
+     c48:	f8 94       	cli
+	eeprom_write_block_changes( (const void*) &Config, (void*) EEPROM_DATA_START_POS, sizeof(CONFIG_STRUCT));	//current_config CONFIG_STRUCT
+     c4a:	8d e4       	ldi	r24, 0x4D	; 77
+     c4c:	91 e0       	ldi	r25, 0x01	; 1
+     c4e:	6a e0       	ldi	r22, 0x0A	; 10
+     c50:	70 e0       	ldi	r23, 0x00	; 0
+     c52:	4c e0       	ldi	r20, 0x0C	; 12
+     c54:	50 e0       	ldi	r21, 0x00	; 0
+     c56:	0e 94 e9 05 	call	0xbd2	; 0xbd2 <eeprom_write_block_changes>
+	sei();
+     c5a:	78 94       	sei
+}
+     c5c:	08 95       	ret
+
+00000c5e <Initial_EEPROM_Config_Load>:
+}
+
+void Initial_EEPROM_Config_Load(void)
+{
+	// load up last settings from EEPROM
+	if(eeprom_read_byte((uint8_t*) EEPROM_DATA_START_POS )!=0x47)
+     c5e:	8a e0       	ldi	r24, 0x0A	; 10
+     c60:	90 e0       	ldi	r25, 0x00	; 0
+     c62:	0e 94 85 08 	call	0x110a	; 0x110a <__eerd_byte_m168pa>
+     c66:	87 34       	cpi	r24, 0x47	; 71
+     c68:	41 f0       	breq	.+16     	; 0xc7a <Initial_EEPROM_Config_Load+0x1c>
+	{
+		Config.setup = 0x47;
+     c6a:	87 e4       	ldi	r24, 0x47	; 71
+     c6c:	80 93 4d 01 	sts	0x014D, r24
+		Set_EEPROM_Default_Config();
+     c70:	0e 94 08 06 	call	0xc10	; 0xc10 <Set_EEPROM_Default_Config>
+		// write to eeProm
+		Save_Config_to_EEPROM();
+     c74:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+     c78:	08 95       	ret
+	} else {
+		// read eeprom
+		eeprom_read_block(&Config, (void*) EEPROM_DATA_START_POS, sizeof(CONFIG_STRUCT)); 
+     c7a:	8d e4       	ldi	r24, 0x4D	; 77
+     c7c:	91 e0       	ldi	r25, 0x01	; 1
+     c7e:	6a e0       	ldi	r22, 0x0A	; 10
+     c80:	70 e0       	ldi	r23, 0x00	; 0
+     c82:	4c e0       	ldi	r20, 0x0C	; 12
+     c84:	50 e0       	ldi	r21, 0x00	; 0
+     c86:	0e 94 75 08 	call	0x10ea	; 0x10ea <__eerd_block_m168pa>
+     c8a:	08 95       	ret
+
+00000c8c <setup>:
+
+	return 1;
+}
+
+void setup(void)
+{
+     c8c:	cf 92       	push	r12
+     c8e:	df 92       	push	r13
+     c90:	ef 92       	push	r14
+     c92:	ff 92       	push	r15
+     c94:	0f 93       	push	r16
+     c96:	1f 93       	push	r17
+     c98:	cf 93       	push	r28
+     c9a:	df 93       	push	r29
+	uint16_t i;	// nb was uint8_t, must be uint16_t for TRI
+	uint16_t RxChannel1ZeroOffset, RxChannel2ZeroOffset, RxChannel4ZeroOffset;
+
+	MCUCR |= (1<<PUD);	// Pull-up Disable
+     c9c:	85 b7       	in	r24, 0x35	; 53
+     c9e:	80 61       	ori	r24, 0x10	; 16
+     ca0:	85 bf       	out	0x35, r24	; 53
+
+	RX_ROLL_DIR 			= INPUT;
+     ca2:	51 98       	cbi	0x0a, 1	; 10
+	RX_PITCH_DIR 			= INPUT;
+     ca4:	52 98       	cbi	0x0a, 2	; 10
+	RX_COLL_DIR   		= INPUT;
+     ca6:	53 98       	cbi	0x0a, 3	; 10
+	RX_YAW_DIR   	 		= INPUT;
+     ca8:	27 98       	cbi	0x04, 7	; 4
+
+	GYRO_YAW_DIR 	 		= INPUT;
+     caa:	38 98       	cbi	0x07, 0	; 7
+	GYRO_PITCH_DIR 	 	= INPUT;
+     cac:	39 98       	cbi	0x07, 1	; 7
+	GYRO_ROLL_DIR  		= INPUT;
+     cae:	3a 98       	cbi	0x07, 2	; 7
+	GAIN_YAW_DIR 	 		= INPUT;
+     cb0:	3d 98       	cbi	0x07, 5	; 7
+	GAIN_PITCH_DIR  	= INPUT;
+     cb2:	3c 98       	cbi	0x07, 4	; 7
+	GAIN_ROLL_DIR  		= INPUT;
+     cb4:	3b 98       	cbi	0x07, 3	; 7
+
+	M1_DIR 					 	= OUTPUT;
+     cb6:	22 9a       	sbi	0x04, 2	; 4
+	M2_DIR 				 		= OUTPUT;
+     cb8:	21 9a       	sbi	0x04, 1	; 4
+	M3_DIR 			 			= OUTPUT;
+     cba:	20 9a       	sbi	0x04, 0	; 4
+	M4_DIR 			 			= OUTPUT;
+     cbc:	57 9a       	sbi	0x0a, 7	; 10
+#if defined(HEX_COPTER) || defined(Y6_COPTER)
+	M5_DIR 				 		= OUTPUT;
+	M6_DIR 				 		= OUTPUT;
+#endif
+	LED_DIR 			 		= OUTPUT;
+     cbe:	26 9a       	sbi	0x04, 6	; 4
+
+	LED 			= 0;
+     cc0:	2e 98       	cbi	0x05, 6	; 5
+	RX_ROLL 	= 0;
+     cc2:	49 98       	cbi	0x09, 1	; 9
+	RX_PITCH 	= 0;
+     cc4:	4a 98       	cbi	0x09, 2	; 9
+	RX_COLL  	= 0;
+     cc6:	4b 98       	cbi	0x09, 3	; 9
+	RX_YAW   	= 0;
+     cc8:	1f 98       	cbi	0x03, 7	; 3
+
+	// pin change interrupt enables
+	PCICR |= (1 << PCIE0);			// PCINT0..7		
+     cca:	e8 e6       	ldi	r30, 0x68	; 104
+     ccc:	f0 e0       	ldi	r31, 0x00	; 0
+     cce:	80 81       	ld	r24, Z
+     cd0:	81 60       	ori	r24, 0x01	; 1
+     cd2:	80 83       	st	Z, r24
+	PCICR |= (1 << PCIE2);			// PCINT16..23
+     cd4:	80 81       	ld	r24, Z
+     cd6:	84 60       	ori	r24, 0x04	; 4
+     cd8:	80 83       	st	Z, r24
+
+	// pin change masks
+	PCMSK0 |= (1 << PCINT7);		// PB7
+     cda:	eb e6       	ldi	r30, 0x6B	; 107
+     cdc:	f0 e0       	ldi	r31, 0x00	; 0
+     cde:	80 81       	ld	r24, Z
+     ce0:	80 68       	ori	r24, 0x80	; 128
+     ce2:	80 83       	st	Z, r24
+	PCMSK2 |= (1 << PCINT17);		// PD1
+     ce4:	ed e6       	ldi	r30, 0x6D	; 109
+     ce6:	f0 e0       	ldi	r31, 0x00	; 0
+     ce8:	80 81       	ld	r24, Z
+     cea:	82 60       	ori	r24, 0x02	; 2
+     cec:	80 83       	st	Z, r24
+	// external interrupts
+	EICRA  = (1 << ISC00) | (1 << ISC10);	// Any change INT0, INT1
+     cee:	85 e0       	ldi	r24, 0x05	; 5
+     cf0:	80 93 69 00 	sts	0x0069, r24
+	EIMSK  = (1 << INT0) | (1 << INT1);		// External Interrupt Mask Register
+     cf4:	83 e0       	ldi	r24, 0x03	; 3
+     cf6:	8d bb       	out	0x1d, r24	; 29
+	EIFR |= (1 << INTF0) | (1 << INTF1);
+     cf8:	8c b3       	in	r24, 0x1c	; 28
+     cfa:	83 60       	ori	r24, 0x03	; 3
+     cfc:	8c bb       	out	0x1c, r24	; 28
+
+	// timer0 (8bit) - run @ 8MHz
+	// used to control ESC/servo pulse length
+	TCCR0A = 0;						// normal operation
+     cfe:	14 bc       	out	0x24, r1	; 36
+	TCCR0B = (1 << CS00);	// clk/0
+     d00:	81 e0       	ldi	r24, 0x01	; 1
+     d02:	85 bd       	out	0x25, r24	; 37
+	TIMSK0 = 0; 					// no interrupts
+     d04:	10 92 6e 00 	sts	0x006E, r1
+
+	// timer1 (16bit) - run @ 1Mhz
+	// used to measure Rx Signals & control ESC/servo output rate
+	TCCR1A = 0;
+     d08:	10 92 80 00 	sts	0x0080, r1
+	TCCR1B = (1 << CS11);
+     d0c:	82 e0       	ldi	r24, 0x02	; 2
+     d0e:	80 93 81 00 	sts	0x0081, r24
+
+	// timer2 8bit - run @ 8MHz / 1024 = 7812.5KHz
+	// and Stick-Arming
+	TCCR2A = 0;	
+     d12:	10 92 b0 00 	sts	0x00B0, r1
+	TCCR2B = (1 << CS22) | (1 << CS21) | (1 << CS20);	// /1024
+     d16:	87 e0       	ldi	r24, 0x07	; 7
+     d18:	80 93 b1 00 	sts	0x00B1, r24
+	TIMSK2 = 0;
+     d1c:	10 92 70 00 	sts	0x0070, r1
+	TIFR2  = 0;
+     d20:	17 ba       	out	0x17, r1	; 23
+	TCNT2 = 0;		// reset counter
+     d22:	10 92 b2 00 	sts	0x00B2, r1
+		ServoPPMRateDivider++;
+		i = ESC_RATE / ServoPPMRateDivider;
+	} while (i>50);
+#endif
+
+	Initial_EEPROM_Config_Load();	// loads config at start-up 
+     d26:	0e 94 2f 06 	call	0xc5e	; 0xc5e <Initial_EEPROM_Config_Load>
+
+	Init_ADC();
+     d2a:	0e 94 16 01 	call	0x22c	; 0x22c <Init_ADC>
+
+	GyroCalibrated = false;
+     d2e:	10 92 22 01 	sts	0x0122, r1
+
+	Armed = false;
+     d32:	10 92 3d 01 	sts	0x013D, r1
+
+	RxChannelsUpdatingFlag = 0;
+     d36:	10 92 4a 01 	sts	0x014A, r1
+
+	RxChannel1 = Config.RxChannel1ZeroOffset;		// prime the channels 1520;
+     d3a:	80 91 51 01 	lds	r24, 0x0151
+     d3e:	90 91 52 01 	lds	r25, 0x0152
+     d42:	90 93 4c 01 	sts	0x014C, r25
+     d46:	80 93 4b 01 	sts	0x014B, r24
+	RxChannel2 = Config.RxChannel2ZeroOffset;		// 1520;
+     d4a:	80 91 53 01 	lds	r24, 0x0153
+     d4e:	90 91 54 01 	lds	r25, 0x0154
+     d52:	90 93 38 01 	sts	0x0138, r25
+     d56:	80 93 37 01 	sts	0x0137, r24
+	RxChannel3 = Config.RxChannel3ZeroOffset;		// 1120;
+     d5a:	80 91 55 01 	lds	r24, 0x0155
+     d5e:	90 91 56 01 	lds	r25, 0x0156
+     d62:	90 93 49 01 	sts	0x0149, r25
+     d66:	80 93 48 01 	sts	0x0148, r24
+	RxChannel4 = Config.RxChannel4ZeroOffset;		// 1520;
+     d6a:	80 91 57 01 	lds	r24, 0x0157
+     d6e:	90 91 58 01 	lds	r25, 0x0158
+     d72:	90 93 26 01 	sts	0x0126, r25
+     d76:	80 93 25 01 	sts	0x0125, r24
+
+	// flash LED
+	LED = 1;
+     d7a:	2e 9a       	sbi	0x05, 6	; 5
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+     d7c:	8b e7       	ldi	r24, 0x7B	; 123
+     d7e:	92 e9       	ldi	r25, 0x92	; 146
+     d80:	01 97       	sbiw	r24, 0x01	; 1
+     d82:	f1 f7       	brne	.-4      	; 0xd80 <setup+0xf4>
+     d84:	00 c0       	rjmp	.+0      	; 0xd86 <setup+0xfa>
+     d86:	00 00       	nop
+	_delay_ms(150);
+	LED = 0;
+     d88:	2e 98       	cbi	0x05, 6	; 5
+
+	sei();								// Global Interrupts 
+     d8a:	78 94       	sei
+     d8c:	8f ed       	ldi	r24, 0xDF	; 223
+     d8e:	93 e9       	ldi	r25, 0x93	; 147
+     d90:	a4 e0       	ldi	r26, 0x04	; 4
+     d92:	81 50       	subi	r24, 0x01	; 1
+     d94:	90 40       	sbci	r25, 0x00	; 0
+     d96:	a0 40       	sbci	r26, 0x00	; 0
+     d98:	e1 f7       	brne	.-8      	; 0xd92 <setup+0x106>
+     d9a:	00 c0       	rjmp	.+0      	; 0xd9c <setup+0x110>
+     d9c:	00 00       	nop
+
+	// 2 second delay
+	_delay_ms(1500);
+	
+	ReadGainPots();
+     d9e:	0e 94 27 01 	call	0x24e	; 0x24e <ReadGainPots>
+	ReadGainPots();
+     da2:	0e 94 27 01 	call	0x24e	; 0x24e <ReadGainPots>
+
+	// clear config
+	if (GainInADC[PITCH] < (UC_ADC_MAX*5)/100 && 
+     da6:	80 91 42 01 	lds	r24, 0x0142
+     daa:	90 91 43 01 	lds	r25, 0x0143
+     dae:	83 33       	cpi	r24, 0x33	; 51
+     db0:	91 05       	cpc	r25, r1
+     db2:	08 f0       	brcs	.+2      	; 0xdb6 <setup+0x12a>
+     db4:	7f c0       	rjmp	.+254    	; 0xeb4 <setup+0x228>
+     db6:	80 91 40 01 	lds	r24, 0x0140
+     dba:	90 91 41 01 	lds	r25, 0x0141
+     dbe:	83 33       	cpi	r24, 0x33	; 51
+     dc0:	91 05       	cpc	r25, r1
+     dc2:	50 f4       	brcc	.+20     	; 0xdd8 <setup+0x14c>
+			GainInADC[ROLL]  < (UC_ADC_MAX*5)/100 &&
+     dc4:	80 91 44 01 	lds	r24, 0x0144
+     dc8:	90 91 45 01 	lds	r25, 0x0145
+     dcc:	83 33       	cpi	r24, 0x33	; 51
+     dce:	91 05       	cpc	r25, r1
+     dd0:	18 f4       	brcc	.+6      	; 0xdd8 <setup+0x14c>
+			GainInADC[YAW]   < (UC_ADC_MAX*5)/100 )
+	{
+		Set_EEPROM_Default_Config();
+     dd2:	0e 94 08 06 	call	0xc10	; 0xc10 <Set_EEPROM_Default_Config>
+     dd6:	ff cf       	rjmp	.-2      	; 0xdd6 <setup+0x14a>
+
+	// Stick Centering
+	if (GainInADC[PITCH] < (UC_ADC_MAX*5)/100)		// less than 5%
+	{
+    // set offsets to zero (otherwise we affect what we want to calibrate !!)
+    Config.RxChannel1ZeroOffset  = 0;
+     dd8:	10 92 52 01 	sts	0x0152, r1
+     ddc:	10 92 51 01 	sts	0x0151, r1
+    Config.RxChannel2ZeroOffset  = 0;
+     de0:	10 92 54 01 	sts	0x0154, r1
+     de4:	10 92 53 01 	sts	0x0153, r1
+    Config.RxChannel4ZeroOffset  = 0;
+     de8:	10 92 58 01 	sts	0x0158, r1
+     dec:	10 92 57 01 	sts	0x0157, r1
+
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+     df0:	2e 9a       	sbi	0x05, 6	; 5
+     df2:	a9 e6       	ldi	r26, 0x69	; 105
+     df4:	b8 e1       	ldi	r27, 0x18	; 24
+     df6:	11 97       	sbiw	r26, 0x01	; 1
+     df8:	f1 f7       	brne	.-4      	; 0xdf6 <setup+0x16a>
+     dfa:	00 c0       	rjmp	.+0      	; 0xdfc <setup+0x170>
+     dfc:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+     dfe:	2e 98       	cbi	0x05, 6	; 5
+     e00:	e9 e6       	ldi	r30, 0x69	; 105
+     e02:	f8 e1       	ldi	r31, 0x18	; 24
+     e04:	31 97       	sbiw	r30, 0x01	; 1
+     e06:	f1 f7       	brne	.-4      	; 0xe04 <setup+0x178>
+     e08:	00 c0       	rjmp	.+0      	; 0xe0a <setup+0x17e>
+     e0a:	00 00       	nop
+    Config.RxChannel4ZeroOffset  = 0;
+
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+     e0c:	2e 9a       	sbi	0x05, 6	; 5
+     e0e:	89 e6       	ldi	r24, 0x69	; 105
+     e10:	98 e1       	ldi	r25, 0x18	; 24
+     e12:	01 97       	sbiw	r24, 0x01	; 1
+     e14:	f1 f7       	brne	.-4      	; 0xe12 <setup+0x186>
+     e16:	00 c0       	rjmp	.+0      	; 0xe18 <setup+0x18c>
+     e18:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+     e1a:	2e 98       	cbi	0x05, 6	; 5
+     e1c:	a9 e6       	ldi	r26, 0x69	; 105
+     e1e:	b8 e1       	ldi	r27, 0x18	; 24
+     e20:	11 97       	sbiw	r26, 0x01	; 1
+     e22:	f1 f7       	brne	.-4      	; 0xe20 <setup+0x194>
+     e24:	00 c0       	rjmp	.+0      	; 0xe26 <setup+0x19a>
+     e26:	00 00       	nop
+    Config.RxChannel4ZeroOffset  = 0;
+
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+     e28:	2e 9a       	sbi	0x05, 6	; 5
+     e2a:	e9 e6       	ldi	r30, 0x69	; 105
+     e2c:	f8 e1       	ldi	r31, 0x18	; 24
+     e2e:	31 97       	sbiw	r30, 0x01	; 1
+     e30:	f1 f7       	brne	.-4      	; 0xe2e <setup+0x1a2>
+     e32:	00 c0       	rjmp	.+0      	; 0xe34 <setup+0x1a8>
+     e34:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+     e36:	2e 98       	cbi	0x05, 6	; 5
+     e38:	89 e6       	ldi	r24, 0x69	; 105
+     e3a:	98 e1       	ldi	r25, 0x18	; 24
+     e3c:	01 97       	sbiw	r24, 0x01	; 1
+     e3e:	f1 f7       	brne	.-4      	; 0xe3c <setup+0x1b0>
+     e40:	00 c0       	rjmp	.+0      	; 0xe42 <setup+0x1b6>
+     e42:	00 00       	nop
+     e44:	c4 e0       	ldi	r28, 0x04	; 4
+     e46:	d0 e0       	ldi	r29, 0x00	; 0
+     e48:	cc 24       	eor	r12, r12
+     e4a:	dd 24       	eor	r13, r13
+     e4c:	ee 24       	eor	r14, r14
+     e4e:	ff 24       	eor	r15, r15
+     e50:	00 e0       	ldi	r16, 0x00	; 0
+     e52:	10 e0       	ldi	r17, 0x00	; 0
+		}
+		RxChannel1ZeroOffset = RxChannel2ZeroOffset = RxChannel4ZeroOffset = 0;
+		
+		for (i=0;i<4;i++)
+		{
+	 		RxGetChannels();
+     e54:	0e 94 c3 02 	call	0x586	; 0x586 <RxGetChannels>
+
+	    RxChannel1ZeroOffset += RxInRoll;
+     e58:	80 91 27 01 	lds	r24, 0x0127
+     e5c:	90 91 28 01 	lds	r25, 0x0128
+     e60:	08 0f       	add	r16, r24
+     e62:	19 1f       	adc	r17, r25
+	    RxChannel2ZeroOffset += RxInPitch;
+     e64:	80 91 3b 01 	lds	r24, 0x013B
+     e68:	90 91 3c 01 	lds	r25, 0x013C
+     e6c:	e8 0e       	add	r14, r24
+     e6e:	f9 1e       	adc	r15, r25
+	    RxChannel4ZeroOffset += RxInYaw;
+     e70:	80 91 29 01 	lds	r24, 0x0129
+     e74:	90 91 2a 01 	lds	r25, 0x012A
+     e78:	c8 0e       	add	r12, r24
+     e7a:	d9 1e       	adc	r13, r25
+     e7c:	a7 ea       	ldi	r26, 0xA7	; 167
+     e7e:	b1 e6       	ldi	r27, 0x61	; 97
+     e80:	11 97       	sbiw	r26, 0x01	; 1
+     e82:	f1 f7       	brne	.-4      	; 0xe80 <setup+0x1f4>
+     e84:	00 c0       	rjmp	.+0      	; 0xe86 <setup+0x1fa>
+     e86:	00 00       	nop
+     e88:	21 97       	sbiw	r28, 0x01	; 1
+			LED = 0;
+			_delay_ms(25);
+		}
+		RxChannel1ZeroOffset = RxChannel2ZeroOffset = RxChannel4ZeroOffset = 0;
+		
+		for (i=0;i<4;i++)
+     e8a:	21 f7       	brne	.-56     	; 0xe54 <setup+0x1c8>
+	    RxChannel4ZeroOffset += RxInYaw;
+
+			_delay_ms(100);
+		}
+		// nb RxGetChannels() divides RxInXXX by 4 so we won't here
+    Config.RxChannel1ZeroOffset  = RxChannel1ZeroOffset;
+     e8c:	10 93 52 01 	sts	0x0152, r17
+     e90:	00 93 51 01 	sts	0x0151, r16
+    Config.RxChannel2ZeroOffset  = RxChannel2ZeroOffset;
+     e94:	f0 92 54 01 	sts	0x0154, r15
+     e98:	e0 92 53 01 	sts	0x0153, r14
+    Config.RxChannel3ZeroOffset  = 1120;
+     e9c:	80 e6       	ldi	r24, 0x60	; 96
+     e9e:	94 e0       	ldi	r25, 0x04	; 4
+     ea0:	90 93 56 01 	sts	0x0156, r25
+     ea4:	80 93 55 01 	sts	0x0155, r24
+    Config.RxChannel4ZeroOffset  = RxChannel4ZeroOffset;
+     ea8:	d0 92 58 01 	sts	0x0158, r13
+     eac:	c0 92 57 01 	sts	0x0157, r12
+
+		// Store gyro direction to EEPROM
+		Save_Config_to_EEPROM();
+     eb0:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+
+	}
+
+	// Gyro direction reversing
+	if (GainInADC[ROLL] < (UC_ADC_MAX*5)/100)		// less than 5% (5/100) * 1023 = 51 
+     eb4:	80 91 40 01 	lds	r24, 0x0140
+     eb8:	90 91 41 01 	lds	r25, 0x0141
+     ebc:	83 33       	cpi	r24, 0x33	; 51
+     ebe:	91 05       	cpc	r25, r1
+     ec0:	08 f0       	brcs	.+2      	; 0xec4 <setup+0x238>
+     ec2:	8a c0       	rjmp	.+276    	; 0xfd8 <setup+0x34c>
+	{
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+     ec4:	2e 9a       	sbi	0x05, 6	; 5
+     ec6:	e9 e6       	ldi	r30, 0x69	; 105
+     ec8:	f8 e1       	ldi	r31, 0x18	; 24
+     eca:	31 97       	sbiw	r30, 0x01	; 1
+     ecc:	f1 f7       	brne	.-4      	; 0xeca <setup+0x23e>
+     ece:	00 c0       	rjmp	.+0      	; 0xed0 <setup+0x244>
+     ed0:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+     ed2:	2e 98       	cbi	0x05, 6	; 5
+     ed4:	89 e6       	ldi	r24, 0x69	; 105
+     ed6:	98 e1       	ldi	r25, 0x18	; 24
+     ed8:	01 97       	sbiw	r24, 0x01	; 1
+     eda:	f1 f7       	brne	.-4      	; 0xed8 <setup+0x24c>
+     edc:	00 c0       	rjmp	.+0      	; 0xede <setup+0x252>
+     ede:	00 00       	nop
+	if (GainInADC[ROLL] < (UC_ADC_MAX*5)/100)		// less than 5% (5/100) * 1023 = 51 
+	{
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+     ee0:	2e 9a       	sbi	0x05, 6	; 5
+     ee2:	a9 e6       	ldi	r26, 0x69	; 105
+     ee4:	b8 e1       	ldi	r27, 0x18	; 24
+     ee6:	11 97       	sbiw	r26, 0x01	; 1
+     ee8:	f1 f7       	brne	.-4      	; 0xee6 <setup+0x25a>
+     eea:	00 c0       	rjmp	.+0      	; 0xeec <setup+0x260>
+     eec:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+     eee:	2e 98       	cbi	0x05, 6	; 5
+     ef0:	e9 e6       	ldi	r30, 0x69	; 105
+     ef2:	f8 e1       	ldi	r31, 0x18	; 24
+     ef4:	31 97       	sbiw	r30, 0x01	; 1
+     ef6:	f1 f7       	brne	.-4      	; 0xef4 <setup+0x268>
+     ef8:	00 c0       	rjmp	.+0      	; 0xefa <setup+0x26e>
+     efa:	00 00       	nop
+	if (GainInADC[ROLL] < (UC_ADC_MAX*5)/100)		// less than 5% (5/100) * 1023 = 51 
+	{
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+     efc:	2e 9a       	sbi	0x05, 6	; 5
+     efe:	89 e6       	ldi	r24, 0x69	; 105
+     f00:	98 e1       	ldi	r25, 0x18	; 24
+     f02:	01 97       	sbiw	r24, 0x01	; 1
+     f04:	f1 f7       	brne	.-4      	; 0xf02 <setup+0x276>
+     f06:	00 c0       	rjmp	.+0      	; 0xf08 <setup+0x27c>
+     f08:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+     f0a:	2e 98       	cbi	0x05, 6	; 5
+     f0c:	a9 e6       	ldi	r26, 0x69	; 105
+     f0e:	b8 e1       	ldi	r27, 0x18	; 24
+     f10:	11 97       	sbiw	r26, 0x01	; 1
+     f12:	f1 f7       	brne	.-4      	; 0xf10 <setup+0x284>
+     f14:	00 c0       	rjmp	.+0      	; 0xf16 <setup+0x28a>
+     f16:	00 00       	nop
+		while(1)
+		{
+			RxGetChannels();
+
+			if (RxInRoll < -30) {	// normal(left)
+				Config.RollGyroDirection = GYRO_NORMAL;
+     f18:	0e e4       	ldi	r16, 0x4E	; 78
+     f1a:	11 e0       	ldi	r17, 0x01	; 1
+			} else if (RxInYaw < -30) { // normal(left)
+				Config.YawGyroDirection = GYRO_NORMAL;
+				Save_Config_to_EEPROM();
+				LED = 1;
+			} else if (RxInYaw > 30) { // reverse(right)
+				Config.YawGyroDirection = GYRO_REVERSED;
+     f1c:	0f 2e       	mov	r0, r31
+     f1e:	f0 e5       	ldi	r31, 0x50	; 80
+     f20:	cf 2e       	mov	r12, r31
+     f22:	f1 e0       	ldi	r31, 0x01	; 1
+     f24:	df 2e       	mov	r13, r31
+     f26:	f0 2d       	mov	r31, r0
+     f28:	c1 e0       	ldi	r28, 0x01	; 1
+			} else if (RxInPitch < -30) { // normal(up)
+				Config.PitchGyroDirection = GYRO_NORMAL;
+				Save_Config_to_EEPROM();
+				LED = 1;
+			} else if (RxInPitch > 30) { // reverse(down)
+				Config.PitchGyroDirection = GYRO_REVERSED;
+     f2a:	0f 2e       	mov	r0, r31
+     f2c:	ff e4       	ldi	r31, 0x4F	; 79
+     f2e:	ef 2e       	mov	r14, r31
+     f30:	f1 e0       	ldi	r31, 0x01	; 1
+     f32:	ff 2e       	mov	r15, r31
+     f34:	f0 2d       	mov	r31, r0
+			_delay_ms(25);
+		}
+
+		while(1)
+		{
+			RxGetChannels();
+     f36:	0e 94 c3 02 	call	0x586	; 0x586 <RxGetChannels>
+
+			if (RxInRoll < -30) {	// normal(left)
+     f3a:	80 91 27 01 	lds	r24, 0x0127
+     f3e:	90 91 28 01 	lds	r25, 0x0128
+     f42:	bf ef       	ldi	r27, 0xFF	; 255
+     f44:	82 3e       	cpi	r24, 0xE2	; 226
+     f46:	9b 07       	cpc	r25, r27
+     f48:	2c f4       	brge	.+10     	; 0xf54 <setup+0x2c8>
+				Config.RollGyroDirection = GYRO_NORMAL;
+     f4a:	f8 01       	movw	r30, r16
+     f4c:	10 82       	st	Z, r1
+				Save_Config_to_EEPROM();
+     f4e:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+				LED = 1;
+     f52:	2e 9a       	sbi	0x05, 6	; 5
+			} if (RxInRoll > 30) {	// reverse(right)
+     f54:	80 91 27 01 	lds	r24, 0x0127
+     f58:	90 91 28 01 	lds	r25, 0x0128
+     f5c:	8f 31       	cpi	r24, 0x1F	; 31
+     f5e:	91 05       	cpc	r25, r1
+     f60:	34 f0       	brlt	.+12     	; 0xf6e <setup+0x2e2>
+				Config.RollGyroDirection = GYRO_REVERSED;
+     f62:	d8 01       	movw	r26, r16
+     f64:	cc 93       	st	X, r28
+				Save_Config_to_EEPROM();
+     f66:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+				LED = 1;
+     f6a:	2e 9a       	sbi	0x05, 6	; 5
+     f6c:	2d c0       	rjmp	.+90     	; 0xfc8 <setup+0x33c>
+			} else if (RxInPitch < -30) { // normal(up)
+     f6e:	80 91 3b 01 	lds	r24, 0x013B
+     f72:	90 91 3c 01 	lds	r25, 0x013C
+     f76:	bf ef       	ldi	r27, 0xFF	; 255
+     f78:	82 3e       	cpi	r24, 0xE2	; 226
+     f7a:	9b 07       	cpc	r25, r27
+     f7c:	34 f4       	brge	.+12     	; 0xf8a <setup+0x2fe>
+				Config.PitchGyroDirection = GYRO_NORMAL;
+     f7e:	f7 01       	movw	r30, r14
+     f80:	10 82       	st	Z, r1
+				Save_Config_to_EEPROM();
+     f82:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+				LED = 1;
+     f86:	2e 9a       	sbi	0x05, 6	; 5
+     f88:	1f c0       	rjmp	.+62     	; 0xfc8 <setup+0x33c>
+			} else if (RxInPitch > 30) { // reverse(down)
+     f8a:	8f 31       	cpi	r24, 0x1F	; 31
+     f8c:	91 05       	cpc	r25, r1
+     f8e:	34 f0       	brlt	.+12     	; 0xf9c <setup+0x310>
+				Config.PitchGyroDirection = GYRO_REVERSED;
+     f90:	d7 01       	movw	r26, r14
+     f92:	cc 93       	st	X, r28
+				Save_Config_to_EEPROM();
+     f94:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+				LED = 1;
+     f98:	2e 9a       	sbi	0x05, 6	; 5
+     f9a:	16 c0       	rjmp	.+44     	; 0xfc8 <setup+0x33c>
+			} else if (RxInYaw < -30) { // normal(left)
+     f9c:	80 91 29 01 	lds	r24, 0x0129
+     fa0:	90 91 2a 01 	lds	r25, 0x012A
+     fa4:	bf ef       	ldi	r27, 0xFF	; 255
+     fa6:	82 3e       	cpi	r24, 0xE2	; 226
+     fa8:	9b 07       	cpc	r25, r27
+     faa:	34 f4       	brge	.+12     	; 0xfb8 <setup+0x32c>
+				Config.YawGyroDirection = GYRO_NORMAL;
+     fac:	f6 01       	movw	r30, r12
+     fae:	10 82       	st	Z, r1
+				Save_Config_to_EEPROM();
+     fb0:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+				LED = 1;
+     fb4:	2e 9a       	sbi	0x05, 6	; 5
+     fb6:	08 c0       	rjmp	.+16     	; 0xfc8 <setup+0x33c>
+			} else if (RxInYaw > 30) { // reverse(right)
+     fb8:	8f 31       	cpi	r24, 0x1F	; 31
+     fba:	91 05       	cpc	r25, r1
+     fbc:	2c f0       	brlt	.+10     	; 0xfc8 <setup+0x33c>
+				Config.YawGyroDirection = GYRO_REVERSED;
+     fbe:	d6 01       	movw	r26, r12
+     fc0:	cc 93       	st	X, r28
+				Save_Config_to_EEPROM();
+     fc2:	0e 94 24 06 	call	0xc48	; 0xc48 <Save_Config_to_EEPROM>
+				LED = 1;
+     fc6:	2e 9a       	sbi	0x05, 6	; 5
+     fc8:	e3 ed       	ldi	r30, 0xD3	; 211
+     fca:	f0 e3       	ldi	r31, 0x30	; 48
+     fcc:	31 97       	sbiw	r30, 0x01	; 1
+     fce:	f1 f7       	brne	.-4      	; 0xfcc <setup+0x340>
+     fd0:	00 c0       	rjmp	.+0      	; 0xfd2 <setup+0x346>
+     fd2:	00 00       	nop
+			}
+
+			_delay_ms(50);
+			LED = 0;
+     fd4:	2e 98       	cbi	0x05, 6	; 5
+
+		}
+     fd6:	af cf       	rjmp	.-162    	; 0xf36 <setup+0x2aa>
+	}
+
+	// ESC throttle calibration
+	if (GainInADC[YAW] < (UC_ADC_MAX*5)/100)		// less than 5%
+     fd8:	80 91 44 01 	lds	r24, 0x0144
+     fdc:	90 91 45 01 	lds	r25, 0x0145
+     fe0:	83 33       	cpi	r24, 0x33	; 51
+     fe2:	91 05       	cpc	r25, r1
+     fe4:	08 f0       	brcs	.+2      	; 0xfe8 <setup+0x35c>
+     fe6:	4c c0       	rjmp	.+152    	; 0x1080 <setup+0x3f4>
+	{
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+     fe8:	2e 9a       	sbi	0x05, 6	; 5
+     fea:	89 e6       	ldi	r24, 0x69	; 105
+     fec:	98 e1       	ldi	r25, 0x18	; 24
+     fee:	01 97       	sbiw	r24, 0x01	; 1
+     ff0:	f1 f7       	brne	.-4      	; 0xfee <setup+0x362>
+     ff2:	00 c0       	rjmp	.+0      	; 0xff4 <setup+0x368>
+     ff4:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+     ff6:	2e 98       	cbi	0x05, 6	; 5
+     ff8:	a9 e6       	ldi	r26, 0x69	; 105
+     ffa:	b8 e1       	ldi	r27, 0x18	; 24
+     ffc:	11 97       	sbiw	r26, 0x01	; 1
+     ffe:	f1 f7       	brne	.-4      	; 0xffc <setup+0x370>
+    1000:	00 c0       	rjmp	.+0      	; 0x1002 <setup+0x376>
+    1002:	00 00       	nop
+	if (GainInADC[YAW] < (UC_ADC_MAX*5)/100)		// less than 5%
+	{
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+    1004:	2e 9a       	sbi	0x05, 6	; 5
+    1006:	e9 e6       	ldi	r30, 0x69	; 105
+    1008:	f8 e1       	ldi	r31, 0x18	; 24
+    100a:	31 97       	sbiw	r30, 0x01	; 1
+    100c:	f1 f7       	brne	.-4      	; 0x100a <setup+0x37e>
+    100e:	00 c0       	rjmp	.+0      	; 0x1010 <setup+0x384>
+    1010:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+    1012:	2e 98       	cbi	0x05, 6	; 5
+    1014:	89 e6       	ldi	r24, 0x69	; 105
+    1016:	98 e1       	ldi	r25, 0x18	; 24
+    1018:	01 97       	sbiw	r24, 0x01	; 1
+    101a:	f1 f7       	brne	.-4      	; 0x1018 <setup+0x38c>
+    101c:	00 c0       	rjmp	.+0      	; 0x101e <setup+0x392>
+    101e:	00 00       	nop
+	if (GainInADC[YAW] < (UC_ADC_MAX*5)/100)		// less than 5%
+	{
+		// flash LED 3 times
+		for (i=0;i<3;i++)
+		{
+			LED = 1;
+    1020:	2e 9a       	sbi	0x05, 6	; 5
+    1022:	a9 e6       	ldi	r26, 0x69	; 105
+    1024:	b8 e1       	ldi	r27, 0x18	; 24
+    1026:	11 97       	sbiw	r26, 0x01	; 1
+    1028:	f1 f7       	brne	.-4      	; 0x1026 <setup+0x39a>
+    102a:	00 c0       	rjmp	.+0      	; 0x102c <setup+0x3a0>
+    102c:	00 00       	nop
+			_delay_ms(25);
+			LED = 0;
+    102e:	2e 98       	cbi	0x05, 6	; 5
+    1030:	e9 e6       	ldi	r30, 0x69	; 105
+    1032:	f8 e1       	ldi	r31, 0x18	; 24
+    1034:	31 97       	sbiw	r30, 0x01	; 1
+    1036:	f1 f7       	brne	.-4      	; 0x1034 <setup+0x3a8>
+    1038:	00 c0       	rjmp	.+0      	; 0x103a <setup+0x3ae>
+    103a:	00 00       	nop
+			_delay_ms(25);
+		}
+
+		Armed = true;	// override so that output_motor_pwm() won't quit early
+    103c:	81 e0       	ldi	r24, 0x01	; 1
+    103e:	80 93 3d 01 	sts	0x013D, r24
+
+		PWM_Low_Pulse_Interval = ((1000000UL / 50) - 2000)/10;	// set to 50Hz
+    1042:	88 e0       	ldi	r24, 0x08	; 8
+    1044:	97 e0       	ldi	r25, 0x07	; 7
+    1046:	90 93 01 01 	sts	0x0101, r25
+    104a:	80 93 00 01 	sts	0x0100, r24
+#endif
+
+		while (1)	// loop forever
+		{
+	
+			RxGetChannels();
+    104e:	0e 94 c3 02 	call	0x586	; 0x586 <RxGetChannels>
+
+			MotorOut1 = RxInCollective;
+    1052:	80 91 18 01 	lds	r24, 0x0118
+    1056:	90 91 19 01 	lds	r25, 0x0119
+    105a:	90 93 21 01 	sts	0x0121, r25
+    105e:	80 93 20 01 	sts	0x0120, r24
+			MotorOut2 = RxInCollective;
+    1062:	90 93 2c 01 	sts	0x012C, r25
+    1066:	80 93 2b 01 	sts	0x012B, r24
+			MotorOut3 = RxInCollective;
+    106a:	90 93 3a 01 	sts	0x013A, r25
+    106e:	80 93 39 01 	sts	0x0139, r24
+#ifdef TRI_COPTER
+			ServoPPMRateDivider = 1;	// This section already outputs @ 50Hz
+			MotorOut4 = RxInYaw;
+#else
+			MotorOut4 = RxInCollective;
+    1072:	90 93 30 01 	sts	0x0130, r25
+    1076:	80 93 2f 01 	sts	0x012F, r24
+#endif
+#if defined(HEX_COPTER) || defined(Y6_COPTER)
+			MotorOut5 = RxInCollective;
+			MotorOut6 = RxInCollective;
+#endif
+			output_motor_ppm();	// this regulates rate at which we output signals
+    107a:	0e 94 22 03 	call	0x644	; 0x644 <output_motor_ppm>
+    107e:	e7 cf       	rjmp	.-50     	; 0x104e <setup+0x3c2>
+		}
+	}
+}
+    1080:	df 91       	pop	r29
+    1082:	cf 91       	pop	r28
+    1084:	1f 91       	pop	r17
+    1086:	0f 91       	pop	r16
+    1088:	ff 90       	pop	r15
+    108a:	ef 90       	pop	r14
+    108c:	df 90       	pop	r13
+    108e:	cf 90       	pop	r12
+    1090:	08 95       	ret
+
+00001092 <main>:
+
+
+int main(void)
+{
+
+	setup();
+    1092:	0e 94 46 06 	call	0xc8c	; 0xc8c <setup>
+
+	while (1)
+	{
+		loop();
+    1096:	0e 94 4a 04 	call	0x894	; 0x894 <loop>
+    109a:	fd cf       	rjmp	.-6      	; 0x1096 <main+0x4>
+
+0000109c <__udivmodhi4>:
+    109c:	aa 1b       	sub	r26, r26
+    109e:	bb 1b       	sub	r27, r27
+    10a0:	51 e1       	ldi	r21, 0x11	; 17
+    10a2:	07 c0       	rjmp	.+14     	; 0x10b2 <__udivmodhi4_ep>
+
+000010a4 <__udivmodhi4_loop>:
+    10a4:	aa 1f       	adc	r26, r26
+    10a6:	bb 1f       	adc	r27, r27
+    10a8:	a6 17       	cp	r26, r22
+    10aa:	b7 07       	cpc	r27, r23
+    10ac:	10 f0       	brcs	.+4      	; 0x10b2 <__udivmodhi4_ep>
+    10ae:	a6 1b       	sub	r26, r22
+    10b0:	b7 0b       	sbc	r27, r23
+
+000010b2 <__udivmodhi4_ep>:
+    10b2:	88 1f       	adc	r24, r24
+    10b4:	99 1f       	adc	r25, r25
+    10b6:	5a 95       	dec	r21
+    10b8:	a9 f7       	brne	.-22     	; 0x10a4 <__udivmodhi4_loop>
+    10ba:	80 95       	com	r24
+    10bc:	90 95       	com	r25
+    10be:	bc 01       	movw	r22, r24
+    10c0:	cd 01       	movw	r24, r26
+    10c2:	08 95       	ret
+
+000010c4 <__divmodhi4>:
+    10c4:	97 fb       	bst	r25, 7
+    10c6:	09 2e       	mov	r0, r25
+    10c8:	07 26       	eor	r0, r23
+    10ca:	0a d0       	rcall	.+20     	; 0x10e0 <__divmodhi4_neg1>
+    10cc:	77 fd       	sbrc	r23, 7
+    10ce:	04 d0       	rcall	.+8      	; 0x10d8 <__divmodhi4_neg2>
+    10d0:	e5 df       	rcall	.-54     	; 0x109c <__udivmodhi4>
+    10d2:	06 d0       	rcall	.+12     	; 0x10e0 <__divmodhi4_neg1>
+    10d4:	00 20       	and	r0, r0
+    10d6:	1a f4       	brpl	.+6      	; 0x10de <__divmodhi4_exit>
+
+000010d8 <__divmodhi4_neg2>:
+    10d8:	70 95       	com	r23
+    10da:	61 95       	neg	r22
+    10dc:	7f 4f       	sbci	r23, 0xFF	; 255
+
+000010de <__divmodhi4_exit>:
+    10de:	08 95       	ret
+
+000010e0 <__divmodhi4_neg1>:
+    10e0:	f6 f7       	brtc	.-4      	; 0x10de <__divmodhi4_exit>
+    10e2:	90 95       	com	r25
+    10e4:	81 95       	neg	r24
+    10e6:	9f 4f       	sbci	r25, 0xFF	; 255
+    10e8:	08 95       	ret
+
+000010ea <__eerd_block_m168pa>:
+    10ea:	dc 01       	movw	r26, r24
+    10ec:	cb 01       	movw	r24, r22
+
+000010ee <__eerd_blraw_m168pa>:
+    10ee:	fc 01       	movw	r30, r24
+    10f0:	f9 99       	sbic	0x1f, 1	; 31
+    10f2:	fe cf       	rjmp	.-4      	; 0x10f0 <__eerd_blraw_m168pa+0x2>
+    10f4:	06 c0       	rjmp	.+12     	; 0x1102 <__eerd_blraw_m168pa+0x14>
+    10f6:	f2 bd       	out	0x22, r31	; 34
+    10f8:	e1 bd       	out	0x21, r30	; 33
+    10fa:	f8 9a       	sbi	0x1f, 0	; 31
+    10fc:	31 96       	adiw	r30, 0x01	; 1
+    10fe:	00 b4       	in	r0, 0x20	; 32
+    1100:	0d 92       	st	X+, r0
+    1102:	41 50       	subi	r20, 0x01	; 1
+    1104:	50 40       	sbci	r21, 0x00	; 0
+    1106:	b8 f7       	brcc	.-18     	; 0x10f6 <__eerd_blraw_m168pa+0x8>
+    1108:	08 95       	ret
+
+0000110a <__eerd_byte_m168pa>:
+    110a:	f9 99       	sbic	0x1f, 1	; 31
+    110c:	fe cf       	rjmp	.-4      	; 0x110a <__eerd_byte_m168pa>
+    110e:	92 bd       	out	0x22, r25	; 34
+    1110:	81 bd       	out	0x21, r24	; 33
+    1112:	f8 9a       	sbi	0x1f, 0	; 31
+    1114:	99 27       	eor	r25, r25
+    1116:	80 b5       	in	r24, 0x20	; 32
+    1118:	08 95       	ret
+
+0000111a <__eewr_byte_m168pa>:
+    111a:	26 2f       	mov	r18, r22
+
+0000111c <__eewr_r18_m168pa>:
+    111c:	f9 99       	sbic	0x1f, 1	; 31
+    111e:	fe cf       	rjmp	.-4      	; 0x111c <__eewr_r18_m168pa>
+    1120:	1f ba       	out	0x1f, r1	; 31
+    1122:	92 bd       	out	0x22, r25	; 34
+    1124:	81 bd       	out	0x21, r24	; 33
+    1126:	20 bd       	out	0x20, r18	; 32
+    1128:	0f b6       	in	r0, 0x3f	; 63
+    112a:	f8 94       	cli
+    112c:	fa 9a       	sbi	0x1f, 2	; 31
+    112e:	f9 9a       	sbi	0x1f, 1	; 31
+    1130:	0f be       	out	0x3f, r0	; 63
+    1132:	01 96       	adiw	r24, 0x01	; 1
+    1134:	08 95       	ret
+
+00001136 <_exit>:
+    1136:	f8 94       	cli
+
+00001138 <__stop_program>:
+    1138:	ff cf       	rjmp	.-2      	; 0x1138 <__stop_program>
